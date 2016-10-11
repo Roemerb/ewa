@@ -24,7 +24,7 @@ public class User {
     private String email;
 
     @Column(name = "hva_id")
-    private Integer hvaId;
+    private String hvaId;
 
     @Column(name = "student_nr")
     private Integer studentId;
@@ -81,11 +81,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getHvaId() {
+    public String getHvaId() {
         return hvaId;
     }
 
-    public void setHvaId(Integer hvaId) {
+    public void setHvaId(String hvaId) {
         this.hvaId = hvaId;
     }
 
