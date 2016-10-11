@@ -44,9 +44,13 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework:spring-jdbc:4.3.3.RELEASE'
     compile 'org.springframework:spring-orm:4.3.3.RELEASE'
+    compile 'org.springframework.data:spring-data-jpa:1.10.4.RELEASE'
+    compile 'org.hibernate:hibernate-core:5.2.2.Final'
+    compile 'org.hibernate:hibernate-entitymanager'
     compile 'org.hibernate:hibernate-gradle-plugin:5.2.2.Final'
     compile 'mysql:mysql-connector-java:5.1.31'
     compile 'commons-dbcp:commons-dbcp:1.4'
+    compile 'org.aspectj:aspectjweaver:1.8.9'
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('com.jayway.jsonpath:json-path')
 }
