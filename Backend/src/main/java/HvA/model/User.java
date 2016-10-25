@@ -9,9 +9,15 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "users")
+@NamedQueries({
+    @NamedQuery(name = "User.findAll", query="SELECT u FROM User u"),
+    @NamedQuery(name = "User.find", query="SELECT u FROM User u WHERE id = :id")
+})
+
 public class User {
 
     @Id
+    @GeneratedValue
     private int id;
 
     @Column(name = "first_name")
@@ -40,6 +46,8 @@ public class User {
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+
+
 
 
     public User() {
