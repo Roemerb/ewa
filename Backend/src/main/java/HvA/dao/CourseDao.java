@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class CourseDao
@@ -16,8 +17,14 @@ public class CourseDao
     private EntityManager em;
 
     @Transactional
+    public List<Course> getAllCourses()
+    {
+        return em.createNamedQuery("Course.getAll", Course.class).getResultList();
+    }
+
+    @Transactional
     public Course getCourse(int id)
     {
-        return em.createNamedQuery("Course.find", Course.class).setParameter("id", id).getSingleResult();
+        return em.createNamedQuery("Course.get", Course.class).setParameter("id", id).getSingleResult();
     }
 }
