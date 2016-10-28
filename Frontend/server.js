@@ -6,7 +6,8 @@ var server = new WebpackDevServer(webpack(config), {
     publicPath: 'http://localhost:8080/',
     contentBase: './app',
     hot: true,
-    noInfo: true
+    noInfo: true,
+    historyApiFallback: true
 });
 
 server.listen(8080, 'localhost', function(err) {

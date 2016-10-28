@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Propedeuse fase</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-2 nav-row">
+            <div class="navigatie">
+                <h2>navigatie</h2>
+                <ul>
+                    <li>Propedeuse fase</li>
+                    <li>Tentamen schema</li>
+                    <li>Remedial</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-10 progress-box">
+            <div class="barbox">
+                <h2>Voortgangbalk</h2>
+                <div id="progress" class="progress">
+
+                </div>
+                <div class="progress-stats">
+                    <p>Studiepunten (eenh.): 60 vereist, 19 behaald, 41 nodig</p>
+                    <p>Studiedelen: 13 vereist, 6 behaald, 7 nodig</p>
+                    <button disabled>Propedeuse verzoek genereren</button>
+                </div>
+            </div>
+            <div id="test"></div>
+            <div class="tabs">
+                <ul class="tab-links">
+                    <li class="active"><a href="#tab1">Blok 1</a></li>
+                    <li><a href="#tab2">Blok 2</a></li>
+                    <li><a href="#tab3">Blok 3</a></li>
+                    <li><a href="#tab4">Blok 4</a></li>
+                </ul>
+
+                <div class="tab-content">
+                    <div id="tab1" class="tab active">
+                        <p>Tab #1 content goes here!</p>
+                        <table>
+                            <tr>
+                                <th>Company</th>
+                                <th>Contact</th>
+                                <th>Country</th>
+                            </tr>
+                            <tr>
+                                <td>Alfreds Futterkiste</td>
+                                <td>Maria Anders</td>
+                                <td>Germany</td>
+                            </tr>
+                            <tr>
+                                <td>Centro comercial Moctezuma</td>
+                                <td>Francisco Chang</td>
+                                <td>Mexico</td>
+                            </tr>
+                            <tr>
+                                <td>Ernst Handel</td>
+                                <td>Roland Mendel</td>
+                                <td>Austria</td>
+                            </tr>
+                            <tr>
+                                <td>Island Trading</td>
+                                <td>Helen Bennett</td>
+                                <td>UK</td>
+                            </tr>
+                            <tr>
+                                <td>Laughing Bacchus Winecellars</td>
+                                <td>Yoshi Tannamuri</td>
+                                <td>Canada</td>
+                            </tr>
+                            <tr>
+                                <td>Magazzini Alimentari Riuniti</td>
+                                <td>Giovanni Rovelli</td>
+                                <td>Italy</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="tab2" class="tab">
+                        <p>Tab #2 content goes here!</p>
+                    </div>
+
+                    <div id="tab3" class="tab">
+                        <p>Tab #3 content goes here!</p>
+                    </div>
+
+                    <div id="tab4" class="tab">
+                        <p>Tab #4 content goes here!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+
+<script src="js/vendor.js"></script>
+<script src="js/bundle.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script>
+
+    jQuery(document).ready(function () {
+        jQuery('.tabs .tab-links a').on('click', function (e) {
+            var currentAttrValue = jQuery(this).attr('href');
+
+// Show/Hide Tabs
+            jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
+
+// Change/remove current tab to active
+            jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
+
+            e.preventDefault();
+        });
+    });
+
+</script>
+<script type="text/babel">
+    var HelloWorld = React.createClass({
+        render: function () {
+            <span>hallo</span>
+        }
+    });
+    React.render(<HelloWorld />, document.getElementById("progress-punten"));
+</script>
+</body>
+
+</html>

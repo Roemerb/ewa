@@ -4,7 +4,8 @@ var production = (process.env.NODE_ENV === 'production');
 
 var bundle = ['./resources/index'];
 var plugins = [
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js')
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.js'),
+    new webpack.HotModuleReplacementPlugin(),
 ];
 var jsLoaders = ['babel'];
 
@@ -36,7 +37,7 @@ if (production) {
 
 var webpackConfig = {
     entry: {
-        bundle: bundle,
+        bundle: './resources/index.jsx',
         vendor: ['react']
     },
     output: {
@@ -44,7 +45,14 @@ var webpackConfig = {
         filename: 'js/[name].js',
         publicPath: 'http://localhost:8080/'
     },
-    plugins: plugins,
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development'),
+            '__DEV__': JSON.stringify(process.env.NODE_ENV !== 'production')
+        })
+    ],
     resolve: {
         alias: {
             'assets': path.join(__dirname, 'resources/')
@@ -54,9 +62,13 @@ var webpackConfig = {
     module: {
         loaders: [
             {
-                test: /\.(jsx|es6)$/,
+                test: /\.(js|jsx|es6)$/,
                 exclude: /node_modules/,
-                loaders: jsLoaders
+                loader: 'babel',
+                query: {
+                    plugins: ['transform-runtime'],
+                    presets: ['es2015', 'react', 'stage-0']
+                }
             },
             {
                 test: /\.(less)$/,
