@@ -6,16 +6,14 @@ import React from "react";
 export default class TableTr extends React.Component {
 
     render() {
-        return (
-                <tr>
-                    <td>{this.props.blok}</td>
-                    <td>PS001</td>
-                    <td>Theorie</td>
-                    <td>Behaald</td>
-                    <td>Blok 3(aanvragen)</td>
-                    <td>7</td>
-                </tr>
-        );
+        return <tr>
+            <td>{this.props.blok}</td>
+            <td>{this.props.vaknr}</td>
+            <td>{this.props.onderdeel}</td>
+            <td>{this.props.status}</td>
+            <td>{this.props.herkansingsperiode}</td>
+            <td>{this.props.gemiddelde}</td>
+        </tr>;
     }
 
 }
