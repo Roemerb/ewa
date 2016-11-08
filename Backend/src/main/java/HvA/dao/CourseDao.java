@@ -27,4 +27,15 @@ public class CourseDao
     {
         return em.createNamedQuery("Course.get", Course.class).setParameter("id", id).getSingleResult();
     }
+
+//    @Transactional
+//    public Course createCourse(Course course)
+//    {
+//        return em.createNamedQuery("Course.create", Course.class)
+//                .setParameter("studyProgramId", course.getStudyProgramId())
+//                .setParameter("semester", course.getSemester())
+//                .setParameter("name", course.getName())
+//                .setParameter("ECTS", course.getECTS())
+//                .setParameter("c.type", course.getType()).getSingleResult();
+//    }
 }

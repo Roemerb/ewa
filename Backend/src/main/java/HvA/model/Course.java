@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name = "courses")
 @NamedQueries({
         @NamedQuery(name = "Course.get", query = "SELECT c FROM Course c WHERE id = :id"),
-        @NamedQuery(name = "Course.getAll", query = "SELECT c FROM Course c")
+        @NamedQuery(name = "Course.getAll", query = "SELECT c FROM Course c"),
+        //@NamedQuery(name = "Course.create", query = "INSERT INTO Courses c VALUES (c.study_program_id = :studyProgramId, c.semester = :semester, c.name = :name,  c. ECTS = :ECTS, c.type = :type)")
 })
 
 public class Course
