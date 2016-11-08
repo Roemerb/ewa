@@ -12,8 +12,9 @@ export default class MainContainer extends Component {
                         <div className="navigatie">
                             <h2>navigatie</h2>
                             <ul>
-                                <li>Propedeuse fase</li>
-                                <li>Tentamen schema</li>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/dashboard">PropedeuseDashboard</a></li>
+
                                 <li>Remedial</li>
                             </ul>
                         </div>

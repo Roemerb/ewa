@@ -10,6 +10,7 @@ export default class DashboardPage extends Component {
         return (
             <div>
                 <ProgressStats vereist={60} behaald={10}/>
+
             </div>
         )
     }

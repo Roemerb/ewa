@@ -1,13 +1,16 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
+import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
 
 export default class HomePage extends Component {
+    constructor() {
+        super();
+        this.state = {name: "René"};
+    }
 
-
-    render () {
+    render() {
         return (
             <div>
-                Hello, World!
+                Welkom, {this.state.name}
             </div>
         )
     }

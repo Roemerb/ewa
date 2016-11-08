@@ -4,6 +4,7 @@
 import React from 'react'
 
 import ProgressBar from '../ProgressBar'
+import ProgressTable from '../ProgressTable'
 
 export default class ProgressStats extends  React.Component {
     render() {
@@ -14,7 +15,9 @@ export default class ProgressStats extends  React.Component {
                 <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald} behaald, {this.props.vereist - this.props.behaald} nodig</p>
                 <p>Studiedelen: 13 vereist, 6 behaald, 7 nodig</p>
                 <button disabled>Propedeuse verzoek genereren</button>
+                <ProgressTable />
             </div>
+
 
         );
     }
