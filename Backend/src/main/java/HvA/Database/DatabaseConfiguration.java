@@ -1,7 +1,10 @@
 package HvA.Database;
 
+import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,6 +23,9 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "HvA.model")
 @EnableTransactionManagement
 public class DatabaseConfiguration {
+
+    @Autowired
+    private Environment env;
 
     @Bean
     public DataSource dataSource() {
@@ -49,4 +55,12 @@ public class DatabaseConfiguration {
         return jpaTransactionManager;
     }
 
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory()
+    {
+        LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
+        lcemfb.setDataSource(dataSource());
+        lcemfb.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        lcemfb.setPackagesToScan(env.getRequiredProperty(PROPERTY_N));
+    }
 }

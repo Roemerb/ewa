@@ -2,7 +2,9 @@ package HvA.Controllers;
 
 import HvA.model.Course;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -19,9 +21,9 @@ public class CourseController
     @Autowired
     private CourseDao dao;
 
-    @RequestMapping(value = "/course/{id}", method = RequestMethod.GET)
-    public Course getCourse(@PathVariable("id") int id)
-    {
+    @RequestMapping(value = "/course/{id}")
+    public ResponseEntity<Course> get(@PathVariable("id") int id) {
+
         Course course = null;
         try
         {
@@ -30,7 +32,8 @@ public class CourseController
         {
             course = new Course();
         }
-        return course;
+
+        return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/course", method = RequestMethod.GET)
@@ -39,5 +42,13 @@ public class CourseController
         List<Course> courses = dao.getAllCourses();
 
         return courses;
+    }
+
+    @RequestMapping(value = "/course/create", method = RequestMethod.POST)
+    public ResponseEntity<Course> createCourse(@RequestBody Course course)
+    {
+        dao.createCourse(course);
+
+        return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
 }
