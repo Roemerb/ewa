@@ -24,26 +24,26 @@ import MainContainer from './components/containers/Main'
 
 import HomePage from './components/pages/Home'
 import DashboardPage from './components/pages/Dashboard'
+import LoginPage from './components/pages/Login'
 
+const initialState = {};
 
-const initialState = {}
-
-const middleware = routerMiddleware(browserHistory)
+const middleware = routerMiddleware(browserHistory);
 
 const store = createStore(
     combineReducers(reducers),
     initialState,
     applyMiddleware(middleware)
-)
+);
 
-const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store);
 
 export default class App extends Component {
 
     render () {
-        const locale = 'en'
+        const locale = 'en';
 
-        const messages = { ...require('./strings/' + locale).default }
+        const messages = { ...require('./strings/' + locale).default };
 
 
         return (
@@ -51,6 +51,7 @@ export default class App extends Component {
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={MainContainer}>
+                            <Route path="login" component={LoginPage} />
                             <IndexRoute component={HomePage} />
                             <Route path="dashboard" component={DashboardPage} />
                         </Route>
