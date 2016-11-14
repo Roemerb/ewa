@@ -38,12 +38,10 @@ export default class ProgressTable extends React.Component {
                             <tbody>
 
 
-                            <TableTr blok={3} vaknr{"10"} onderdeel{"theorie"} status{"gehaald"}
-                                     herkansingsperiode{"nu"} gemiddelde{5}/>
-                            <TableTr blok={3} vaknr{"10"} onderdeel{"theorie"} status{"gehaald"}
-                                     herkansingsperiode{"nu"}gGemiddelde{5}/>
-                            <TableTr blok={3} vaknr{"10"} onderdeel{"theorie"} status{"jahoor"} herkansingsperiode{"nu"}
-                                     gemiddelde{5}/>
+                            <TableTr blok="3" vaknr="10" onderdeel="theorie" status="gehaald"herkansingsperiode="nu" gemiddelde="5"/>
+                            <TableTr blok="3" vaknr="10" onderdeel="theorie" status="gehaald"herkansingsperiode="nu" gemiddelde="5"/>
+                            <TableTr blok="3" vaknr="10" onderdeel="theorie" status="gehaald"herkansingsperiode="nu" gemiddelde="5"/>
+
                             </tbody>
                         </table>
                     </div>
