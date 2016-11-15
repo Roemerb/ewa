@@ -8,9 +8,9 @@ export default class DashboardPage extends Component {
 
     render () {
         return (
-            <div>
+            <div className="container">
+                <div className="push-30"></div>
                 <ProgressStats vereist={60} behaald={10}/>
-
             </div>
         )
     }

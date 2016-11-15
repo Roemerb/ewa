@@ -16,7 +16,7 @@ export default class Login extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-                            <div className="main">
+                            <div>
                                 <form role="form" action="/login" method="post">
                                     <div className="form-group">
                                         <input type="text" className="form-control input-lg" id="inputUsername"  name="user" required="required" placeholder="HVA ID" />

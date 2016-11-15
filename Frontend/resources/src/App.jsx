@@ -25,6 +25,7 @@ import MainContainer from './components/containers/Main'
 import HomePage from './components/pages/Home'
 import DashboardPage from './components/pages/Dashboard'
 import LoginPage from './components/pages/Login'
+import PageNotFound from './components/pages/404'
 
 const initialState = {};
 
@@ -51,10 +52,11 @@ export default class App extends Component {
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={MainContainer}>
-                            <Route path="login" component={LoginPage} />
-                            <IndexRoute component={HomePage} />
+                            <IndexRoute component={HomePage} /> //hoe kom je aan HomePage component?
                             <Route path="dashboard" component={DashboardPage} />
                         </Route>
+                        <Route path='/login' component={LoginPage} />
+                        <Route path='*' component={PageNotFound} />
                     </Router>
                 </Provider>
             </IntlProvider>

@@ -29,8 +29,8 @@ export default class NavBar extends React.Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Progress
+                                <a href="/dashboard">
+                                    Dashboard
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-signal"></span>
                                 </a>
                             </li>
