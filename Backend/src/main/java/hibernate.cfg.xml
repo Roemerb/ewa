@@ -8,6 +8,9 @@
     <property name="connection.driver_class"/>
     <property name="connection.username"/>
     <property name="connection.password"/>
+    <property name="hibernate.dialect">
+      org.hibernate.dialect.MySQL5InnoDBDialect
+    </property>
     <!-- DB schema will be updated if needed -->
     <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>

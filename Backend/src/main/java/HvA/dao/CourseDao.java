@@ -2,10 +2,12 @@ package HvA.dao;
 
 
 import HvA.model.Course;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -34,14 +36,8 @@ public class CourseDao
     @Transactional
     public Course createCourse(Course course)
     {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MyPersisntenceUnit");
-        EntityManager r = emf.createEntityManager();
-        r.getTransaction().begin();
-
-        r.persist(course);
-        r.getTransaction().commit();
-        r.close();
-        emf.close();
+        course = em.merge(course);
+        em.persist(course);
 
         return course;
     }

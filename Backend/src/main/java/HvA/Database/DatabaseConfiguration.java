@@ -54,13 +54,4 @@ public class DatabaseConfiguration {
         jpaTransactionManager.setEntityManagerFactory(entityManager().getObject());
         return jpaTransactionManager;
     }
-
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory()
-    {
-        LocalContainerEntityManagerFactoryBean lcemfb = new LocalContainerEntityManagerFactoryBean();
-        lcemfb.setDataSource(dataSource());
-        lcemfb.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        lcemfb.setPackagesToScan(env.getRequiredProperty(PROPERTY_N));
-    }
 }
