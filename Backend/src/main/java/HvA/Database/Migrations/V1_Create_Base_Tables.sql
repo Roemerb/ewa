@@ -18,13 +18,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 USE `sis` ;
 
--- -----------------------------------------------------
--- Table `sis`.`students`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sis`.`students` (
-)
-ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `sis`.`users`
