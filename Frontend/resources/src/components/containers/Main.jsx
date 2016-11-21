@@ -8,9 +8,11 @@ export default class MainContainer extends Component {
         return (
             <div id="main-div">
                 <NavBar />
-                <div className="container">
-                    <div className="col-xs-12 col-md-10 progress-box">
-                        {this.props.children}
+                <div className="main">
+                    <div class="row">
+                        <div className="col-xs-12 progress-box">
+                            {this.props.children}
+                        </div>
                     </div>
                 </div>
             </div>

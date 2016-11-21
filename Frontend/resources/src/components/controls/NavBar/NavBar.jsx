@@ -17,33 +17,27 @@ export default class NavBar extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="#">SIS</a>
+                        <a className="navbar-brand" href="/">SIS</a>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                         <ul className="nav navbar-nav">
                             <li className="active">
-                                <a href="#">
-                                    Home
-                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-home"></span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/dashboard">
                                     Dashboard
-                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-signal"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Remedial
-                                    <span  className="pull-right hidden-xs showopacity glyph-nav glyphicons-clock"></span>
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-dashboard"></span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     Subscriptions
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Remedial
+                                    <span  className="pull-right hidden-xs showopacity glyph-nav glyphicons-clock"></span>
                                 </a>
                             </li>
                             <li>

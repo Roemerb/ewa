@@ -24,8 +24,8 @@ import MainContainer from './components/containers/Main'
 
 import HomePage from './components/pages/Home'
 import DashboardPage from './components/pages/Dashboard'
-import LoginPage from './components/pages/Login'
 import PageNotFound from './components/pages/404'
+import LoginPage from './components/pages/Login'
 
 const initialState = {};
 
@@ -52,8 +52,8 @@ export default class App extends Component {
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={MainContainer}>
-                            <IndexRoute component={HomePage} /> //hoe kom je aan HomePage component?
-                            <Route path="dashboard" component={DashboardPage} />
+                            <IndexRoute component={DashboardPage} />
+                            <Route path='/dashboard' component={DashboardPage} />
                         </Route>
                         <Route path='/login' component={LoginPage} />
                         <Route path='*' component={PageNotFound} />

@@ -37,6 +37,21 @@ h1.notfound {
   font-weight:bold;
 }
 
+.center {
+  text-align: center;
+  width: 800px;
+  margin-left: -400px;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+}
+
+@media (min-width: 1200px) {
+  .container-lg {
+    width: 1135px;
+  }
+}
+
 #root, #main-div {
   height: 100% !important;
 }
@@ -50,8 +65,12 @@ html {
   border: 1px solid;
 }
 
+.rem-padding-right {
+  padding-right: 0px !important;
+}
+
 .progress {
-  border:1px solid;
+  border: 1px solid;
   background: white;
   border-radius: 0;
 }
@@ -132,6 +151,10 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.title {
+  font: normal 50px/50px Arial, Helvetica, sans-serif;
+}
+
 .glyph-nav {
   display: inline-block;
   font-family: 'Glyphicons Regular';
@@ -192,7 +215,6 @@ nav.sidebar, .main{
   /*Allow main to be next to Nav*/
   .main{
     position: absolute;
-    width: calc(100% - 40px); /*keeps 100% minus nav size*/
     margin-left: 40px;
     float: right;
   }
@@ -279,11 +301,15 @@ nav.sidebar, .main{
 /* .....NavBar: Fully showing nav bar..... */
 
 @media (min-width: 1330px) {
-
   /*Allow main to be next to Nav*/
   .main{
-    width: calc(100% - 200px); /*keeps 100% minus nav size*/
-    margin-left: 200px;
+    /*  width: calc(100% - 200px); keeps 100% minus nav size*/
+    margin-left: 350px;
+  }
+
+  /*lets nav bar to be showed on mouseover*/
+  nav.sidebar:hover + .main{
+    margin-left: 350px;
   }
 
   /*Show all nav*/

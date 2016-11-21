@@ -8,8 +8,9 @@ export default class DashboardPage extends Component {
 
     render () {
         return (
-            <div className="container">
+            <div>
                 <div className="push-30"></div>
+                <h1 className="text-center title">Student dashboard</h1>
                 <ProgressStats vereist={60} behaald={10}/>
             </div>
         )
