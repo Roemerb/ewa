@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -21,6 +21,8 @@ public class CourseController
     @Autowired
     private CourseDao dao;
 
+
+    @CrossOrigin(origins = "http://localhost:8081/dashboard")
     @RequestMapping(value = "/course/{id}")
     public ResponseEntity<Course> get(@PathVariable("id") int id) {
 
@@ -35,7 +37,7 @@ public class CourseController
 
         return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
-
+    @CrossOrigin(origins = "http://localhost:8081/dashboard")
     @RequestMapping(value = "/course", method = RequestMethod.GET)
     public List<Course> getAllCourses()
     {
