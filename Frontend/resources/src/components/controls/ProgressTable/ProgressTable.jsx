@@ -45,6 +45,7 @@ export default class ProgressTable extends React.Component {
                                      gemiddelde="5"/>
 
 
+
                             </tbody>
                         </table>
                     </div>

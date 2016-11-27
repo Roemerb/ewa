@@ -6,7 +6,7 @@ var server = new WebpackDevServer(webpack(config), {
     publicPath: 'http://localhost:8081/',
     contentBase: './app',
     hot: true,
-    noInfo: true,
+    noInfo: false,
     historyApiFallback: true
 });
 
