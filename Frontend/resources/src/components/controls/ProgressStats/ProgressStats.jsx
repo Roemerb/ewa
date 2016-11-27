@@ -9,12 +9,13 @@ export default class ProgressStats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {employees: []};
+        this.state = {courses: []};
     }
 
     componentDidMount() {
         client({method: 'GET', path: 'http://localhost:8080/course/'}).done(response => {
-            this.setState({employees: response.entity._embedded.employees});
+            // In principe moet hier alles in een array
+            // this.setState({courses: response.entity._embedded.courses});
         });
     }
 
