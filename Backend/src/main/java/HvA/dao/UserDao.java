@@ -19,6 +19,7 @@ public class UserDao {
 
     @Transactional
     public User getUser(int id) {
+
         return em.createNamedQuery("User.find", User.class).setParameter("id", id).getSingleResult();
     }
 
