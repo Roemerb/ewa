@@ -11,6 +11,7 @@ export default class ProgressBar extends React.Component {
         const progressStyle = {
             width: percentageBehaald + '%'
         };
+
         return (
             <div className="progress">
                 <div className="progress-bar" role="progressbar" aria-valuenow={percentageBehaald} aria-valuemin="0"
