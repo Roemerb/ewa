@@ -39,7 +39,7 @@ export default class ProgressStats extends React.Component {
     }
 
     render() {
-        console.log(this.state.data[0]);
+      
         return (
             <div className="puntenOverzicht">
                 <div className="progressbar-container">
