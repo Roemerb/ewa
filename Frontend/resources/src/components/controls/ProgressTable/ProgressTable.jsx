@@ -10,22 +10,24 @@ export default class ProgressTable extends React.Component {
                 <tr>
                     <th>id</th>
                     <th>CourseID</th>
-                    <th>Semester</th>
-                    <th>Naam</th>
-                    <th>Type</th>
-                    <th>ECTS</th>
+                    <th>type</th>
+                    <th>grade</th>
+                    <th>passed</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                {this.props.result.map(function (result, index) {
+                {
+
+                    this.props.result.map(function (result, index) {
                     return (
                         <tr key={result.id}>
                             <td>{result.id}</td>
-                            <td>{result.studyProgramId}</td>
-                            <td>{result.semester}</td>
-                            <td>{result.name}</td>
-                            <td>{result.type}</td>
-                            <td>{result.ects}</td>
+                            <td>{result.courseId}</td>
+                            <td>{result.gradeType}</td>
+                            <td>{result.grade}</td>
+                            <td>{result.passed}</td>
+
 
                         </tr>)
                 })}

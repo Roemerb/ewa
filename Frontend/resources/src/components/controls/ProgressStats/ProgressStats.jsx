@@ -4,7 +4,7 @@
 import React from "react";
 import ProgressBar from "../ProgressBar";
 import ProgressTable from "../ProgressTable";
-import client from "../../../Client";
+
 export default class ProgressStats extends React.Component {
 
     constructor(props) {
@@ -12,7 +12,7 @@ export default class ProgressStats extends React.Component {
         this.state = {data: []} ;
     }
     componentDidMount(){
-        this.getDataFromServer('http://localhost:8080/course');
+        this.getDataFromServer('http://localhost:8080/grade');
     }
     //showResult Method
     showResult(response) {
@@ -39,7 +39,7 @@ export default class ProgressStats extends React.Component {
     }
 
     render() {
-      
+
         return (
             <div className="puntenOverzicht">
                 <div className="progressbar-container">

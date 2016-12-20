@@ -7,10 +7,12 @@ export default class HomePage extends Component {
         this.state = {name: "René"};
     }
 
-    render() {
+    render () {
         return (
             <div>
-                Welkom, {this.state.name}
+                <div className="push-30"></div>
+                <h1 className="text-center title">HvA Student dashboard</h1>
+                <p>Hallo, {this.state.name}</p>
             </div>
         )
     }
