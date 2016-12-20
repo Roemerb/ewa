@@ -19,9 +19,15 @@ public class GradeDao
     @Transactional
     public List<Grade> getallGrades()
     {
-        return em.createNamedQuery("Grade.getAll", Grade.class).getResultList();
+        return em.createNamedQuery("Grade.getAll", Grade.class)
+                .getResultList();
     }
-
+    public List<Grade> getLimitedGrades(int limit)
+    {
+        return em.createNamedQuery("Grade.getAll", Grade.class)
+                .setMaxResults(limit)
+                .getResultList();
+    }
     @Transactional
     public Grade getGrade(int id)
     {

@@ -5,6 +5,7 @@ import React from "react";
 export default class ProgressTable extends React.Component {
     render() {
         return (
+
             <table className="table table-bordered">
                 <thead>
                 <tr>
@@ -19,7 +20,9 @@ export default class ProgressTable extends React.Component {
                 <tbody>
                 {
 
-                    this.props.result.map(function (result, index) {
+
+
+                    this.props.result.map(function (result) {
                     return (
                         <tr key={result.id}>
                             <td>{result.id}</td>
@@ -32,6 +35,7 @@ export default class ProgressTable extends React.Component {
                         </tr>)
                 })}
                 </tbody>
+
             </table>
         );
     }

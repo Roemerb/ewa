@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import ProgressStats from '../controls/ProgressStats'
 
-export default class ProgressPage extends Component {
+export default class Progress extends Component {
 
 
     render () {

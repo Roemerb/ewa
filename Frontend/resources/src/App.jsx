@@ -54,7 +54,7 @@ export default class App extends Component {
                     <Router history={history}>
                         <Route path="/" component={MainContainer}>
                             <IndexRoute component={HomePage} />
-                            <Route path='/Progress' component={ProgressPage} />
+
                             <Route path='/notifications' component={NotificationsPage} />
                         </Route>
                         <Route path='/login' component={LoginPage} />

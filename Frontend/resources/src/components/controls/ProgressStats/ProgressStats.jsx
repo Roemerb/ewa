@@ -12,7 +12,7 @@ export default class ProgressStats extends React.Component {
         this.state = {data: []} ;
     }
     componentDidMount(){
-        this.getDataFromServer('http://localhost:8080/grade');
+        this.getDataFromServer('http://localhost:8080//limitedGrade/5');
     }
     //showResult Method
     showResult(response) {

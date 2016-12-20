@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Table(name = "grades")
 @NamedQueries(value = {
         @NamedQuery(name = "Grade.get", query = "SELECT c FROM Grade c WHERE id = :id"),
-        @NamedQuery(name = "Grade.gitLimit", query = "SELECT c FROM Grade c WHERE  LIMIT :id "),
         @NamedQuery(name = "Grade.getAll", query = "SELECT c FROM Grade c"),
 
 })
