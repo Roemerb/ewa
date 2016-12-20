@@ -4,18 +4,11 @@
 import React from "react";
 import ProgressBar from "../ProgressBar";
 import ProgressTable from "../ProgressTable";
-import client from "../../../Client";
 export default class ProgressStats extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {employees: []};
-    }
-
-    componentDidMount() {
-        client({method: 'GET', path: 'http://localhost:8080/course/'}).done(response => {
-            this.setState({employees: response.entity._embedded.employees});
-        });
     }
 
     render() {
