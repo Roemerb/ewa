@@ -2,7 +2,7 @@
  * Created by Rene on 27-10-2016.
  */
 import React from "react";
-export default class ProgressTable extends React.Component {
+export default class DashboardTable extends React.Component {
     render() {
         return (
 

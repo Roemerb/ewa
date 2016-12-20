@@ -23,7 +23,7 @@ import { IntlProvider } from 'react-intl'
 import MainContainer from './components/containers/Main'
 
 import HomePage from './components/pages/Home'
-import ProgressPage from './components/pages/Progress'
+
 import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
 import NotificationsPage from './components/pages/Notifications'
