@@ -1,6 +1,9 @@
 package HvA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
@@ -30,6 +33,14 @@ public class Course
     @Column(name = "type")
     private String type;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    public Set<Exam> exams;
+
+    public Set<Exam> getExams()
+    {
+        return exams;
+    }
 
     public Course(int id, int studyProgramId, int semester, String name, int ECTS, String type)
     {

@@ -1,6 +1,7 @@
 package HvA.Controllers;
 
 import HvA.model.Course;
+import HvA.model.Exam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,9 @@ import javax.persistence.PersistenceContext;
 
 import HvA.dao.CourseDao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -36,6 +39,25 @@ public class CourseController
 
         return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/course/{id}/exams")
+    public ResponseEntity<Set<Exam>> getExamsForCourse(@PathVariable("id") int id)
+    {
+        Course course = null;
+        Set<Exam> exams = new HashSet<Exam>();
+        try
+        {
+            course = dao.getCourse(id);
+            exams = course.getExams();
+        }
+        catch (NoResultException ex)
+        {
+            course = new Course();
+        }
+
+        return new ResponseEntity<Set<Exam>>(exams, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/course", method = RequestMethod.GET)
     public List<Course> getAllCourses()
     {

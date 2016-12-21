@@ -30,7 +30,7 @@ public class CourseDao
     @Transactional
     public Course getCourse(int id)
     {
-        return em.createNamedQuery("Course.get", Course.class).setParameter("id", id).getSingleResult();
+        return em.find(Course.class, id);
     }
 
     @Transactional
