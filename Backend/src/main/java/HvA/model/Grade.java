@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "grades")
 @NamedQueries(value = {
-        @NamedQuery(name = "Grade.get", query = "SELECT c FROM Grade c WHERE id = :id"),
-        @NamedQuery(name = "Grade.getAll", query = "SELECT c FROM Grade c"),
+        @NamedQuery(name = "Grade.get", query = "SELECT g FROM Grade g WHERE id = :id"),
+        @NamedQuery(name = "Grade.getAll", query = "SELECT g FROM Grade g"),
 
 })
 public class Grade

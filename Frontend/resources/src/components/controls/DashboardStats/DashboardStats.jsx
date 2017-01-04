@@ -12,7 +12,7 @@ export default class DashboardStats extends React.Component {
         this.state = {data: []} ;
     }
     componentDidMount(){
-        this.getDataFromServer('http://localhost:8080//limitedGrade/5');
+        this.getDataFromServer('http://localhost:8080/Grade');
     }
     //showResult Method
     showResult(response) {
