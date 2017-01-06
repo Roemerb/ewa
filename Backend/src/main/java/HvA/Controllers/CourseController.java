@@ -1,6 +1,7 @@
 package HvA.Controllers;
 
 import HvA.model.Course;
+import HvA.model.Exam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -8,10 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.NoResultException;
+import javax.xml.ws.Response;
 
 import HvA.dao.CourseDao;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -41,6 +44,21 @@ public class CourseController
         List<Course> courses = dao.getAllCourses();
 
         return courses;
+    }
+
+    @RequestMapping(value="/course/{id}/exams")
+    public Set<Exam> getExamsForCourses(@PathVariable("id") int id)
+    {
+        Course course = null;
+        try
+        {
+            course = dao.getCourse(id);
+        } catch(NoResultException ex)
+        {
+            course = new Course();
+        }
+
+        return course.getExams();
     }
 
     @RequestMapping(value = "/course/create", method = RequestMethod.POST)
