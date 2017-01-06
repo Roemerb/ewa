@@ -7,6 +7,10 @@ import java.util.Date;
 
 @Entity
 @Table(name = "exams")
+@NamedQueries({
+        @NamedQuery(name = "Exam.get", query = "SELECT e FROM Exam e WHERE id = :id"),
+        @NamedQuery(name = "Exam.getAll", query = "SELECT e FROM Exam e"),
+})
 public class Exam
 {
     @Id
