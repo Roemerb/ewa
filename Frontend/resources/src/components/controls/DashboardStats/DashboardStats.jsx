@@ -9,30 +9,32 @@ export default class DashboardStats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {data: []} ;
+        this.state = {data: []};
     }
-    componentDidMount(){
-        this.getDataFromServer('http://localhost:8080/Grade');
+
+    componentDidMount() {
+        this.getDataFromServer('http://localhost:8080/limitedPersonal/5/1');
     }
+
     //showResult Method
     showResult(response) {
 
         this.setState({
-            data: response
-
-        }
+                data: response
+            }
         );
     }
+
     //making ajax call to get data from server
-    getDataFromServer(URL){
+    getDataFromServer(URL) {
         $.ajax({
-            type:"GET",
-            dataType:"json",
-            url:URL,
-            success: function(response) {
+            type: "GET",
+            dataType: "json",
+            url: URL,
+            success: function (response) {
                 this.showResult(response);
             }.bind(this),
-            error: function(xhr, status, err) {
+            error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });

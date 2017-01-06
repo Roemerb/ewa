@@ -10,19 +10,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "grades")
 @NamedQueries(value = {
-        @NamedQuery(name = "Grade.get", query = "SELECT g FROM Grade g WHERE id = :id"),
-        @NamedQuery(name = "Grade.getAll", query = "SELECT g FROM Grade g"),
+        @NamedQuery(name = "Grade.get", query = "SELECT c FROM Grade c WHERE id = :id"),
+        @NamedQuery(name = "Grade.getAll", query = "SELECT c FROM Grade c"),
+        @NamedQuery(name = "Grade.getAllByUser", query = "SELECT c FROM Grade c WHERE user_id = :id"),
 
 })
-public class Grade
-{
+public class Grade {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Column(name = "course_id")
-    private int courseId;
 
     @Column(name = "type")
     private String gradeType;
@@ -33,12 +30,19 @@ public class Grade
     @Column(name = "passed")
     private int passed;
 
-    public Grade(int id, int courseId, String gradeType, String grade, int passed) {
-        this.id = id;
-        this.courseId = courseId;
+    @Column(name = "user_id")
+    private int user_id;
+
+    @Column(name = "exam_id")
+    private int exam_id;
+
+
+    public Grade(String gradeType, String grade, int passed, int user_id, int exam_id) {
         this.gradeType = gradeType;
         this.grade = grade;
         this.passed = passed;
+        this.user_id = user_id;
+        this.exam_id = exam_id;
     }
 
     public Grade() {
@@ -50,14 +54,6 @@ public class Grade
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
     }
 
     public String getGradeType() {
@@ -82,5 +78,21 @@ public class Grade
 
     public void setPassed(int passed) {
         this.passed = passed;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getExam_id() {
+        return exam_id;
+    }
+
+    public void setExam_id(int exam_id) {
+        this.exam_id = exam_id;
     }
 }

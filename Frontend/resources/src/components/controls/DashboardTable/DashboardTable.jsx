@@ -26,10 +26,10 @@ export default class DashboardTable extends React.Component {
                     return (
                         <tr key={result.id}>
                             <td>{result.id}</td>
-                            <td>{result.courseId}</td>
+                            <td>{result.exam_id}</td>
                             <td>{result.gradeType}</td>
                             <td>{result.grade}</td>
-                            <td>{result.passed}</td>
+                            <td>{result.passed == 1 && "Gehaald" || "niet behaald"}</td>
 
 
                         </tr>)

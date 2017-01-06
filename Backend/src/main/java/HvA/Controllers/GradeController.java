@@ -38,9 +38,9 @@ public class GradeController {
         return grades;
     }
 
-    @RequestMapping(value = "/limitedGrade/{limit}", method = RequestMethod.GET)
-    public List<Grade> getLimitedGrades(@PathVariable("limit") int limit) {
-        List<Grade> grades = dao.getLimitedGrades(limit);
+    @RequestMapping(value = "/limitedPersonal/{limit}/{id}", method = RequestMethod.GET)
+    public List<Grade> getLimitedGrades(@PathVariable("limit") int limit, @PathVariable("id") int id) {
+        List<Grade> grades = dao.getLimitedGradesByUser(limit, id );
 
         return grades;
     }

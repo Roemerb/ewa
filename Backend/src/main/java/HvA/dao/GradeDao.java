@@ -10,33 +10,31 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
-public class GradeDao
-{
+public class GradeDao {
 
     @PersistenceContext
     private EntityManager em;
 
     @Transactional
-    public List<Grade> getallGrades()
-    {
+    public List<Grade> getallGrades() {
         return em.createNamedQuery("Grade.getAll", Grade.class)
                 .getResultList();
     }
-    public List<Grade> getLimitedGrades(int limit)
-    {
-        return em.createNamedQuery("Grade.getAll", Grade.class)
+
+    public List<Grade> getLimitedGradesByUser(int limit, int user_id) {
+        return em.createNamedQuery("Grade.getAllByUser", Grade.class)
+                .setParameter("id", user_id)
                 .setMaxResults(limit)
                 .getResultList();
     }
+
     @Transactional
-    public Grade getGrade(int id)
-    {
+    public Grade getGrade(int id) {
         return em.createNamedQuery("Grade.get", Grade.class).setParameter("id", id).getSingleResult();
     }
 
     @Transactional
-    public Grade createGrade(Grade grade)
-    {
+    public Grade createGrade(Grade grade) {
         grade = em.merge(grade);
         em.persist(grade);
 
