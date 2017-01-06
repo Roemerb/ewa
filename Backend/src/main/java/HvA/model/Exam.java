@@ -1,82 +1,98 @@
 package HvA.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-/**
- * Project: Backend,
- * Created by Kadir Basturk on 6-10-2016.
- */
+import javax.persistence.*;
+import java.util.Date;
+
 @Entity
 @Table(name = "exams")
-@NamedQueries(value = {
+@NamedQueries({
         @NamedQuery(name = "Exam.get", query = "SELECT e FROM Exam e WHERE id = :id"),
         @NamedQuery(name = "Exam.getAll", query = "SELECT e FROM Exam e"),
-
 })
-public class Exam {
+public class Exam
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "course_id")
-    private int courseId;
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "course_id")
+    private Course course;
 
     @Column(name = "location")
     private String location;
 
     @Column(name = "date_and_time")
-    private String date_and_time;
+    private Date dateAndTime;
 
     @Column(name = "type")
     private String type;
 
-    public Exam(int courseId, String location, String date_and_time, String type) {
-        this.courseId = courseId;
-        this.location = location;
-        this.date_and_time = date_and_time;
-        this.type = type;
+    public Exam(int id, Course course, String location, Date dateAndTime, String type)
+    {
+        setId(id);
+        setCourse(course);
+        setLocation(location);
+        setDateAndTime(dateAndTime);
+        setType(type);
     }
 
-    public Exam() {
+    public Exam()
+    {
+
     }
 
-    public int getId() {
+    public Course getCourse()
+    {
+        return course;
+    }
+
+    public void setCourse(Course course)
+    {
+        this.course = course;
+    }
+
+    public int getId()
+    {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
-    public int getCourseId() {
-        return courseId;
-    }
 
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public String getLocation() {
+    public String getLocation()
+    {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(String location)
+    {
         this.location = location;
     }
 
-    public String getDate_and_time() {
-        return date_and_time;
+    public Date getDateAndTime()
+    {
+        return dateAndTime;
     }
 
-    public void setDate_and_time(String date_and_time) {
-        this.date_and_time = date_and_time;
+    public void setDateAndTime(Date dateAndTime)
+    {
+        this.dateAndTime = dateAndTime;
     }
 
-    public String getType() {
+    public String getType()
+    {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(String type)
+    {
         this.type = type;
     }
 }
