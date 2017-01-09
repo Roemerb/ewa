@@ -1,6 +1,8 @@
 package HvA.Controllers;
 
 import HvA.dao.UserDao;
+import HvA.model.Group;
+import HvA.model.Study_Program;
 import HvA.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,5 +46,41 @@ public class UserController
         }
 
         return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/{id}/group")
+    public ResponseEntity<Group> getGroupForUser(@PathVariable("id") int id)
+    {
+        User user = null;
+        try
+        {
+            user = dao.getUser(id);
+        }
+        catch(NoResultException ex)
+        {
+            user = new User();
+        }
+
+        Group group = user.getGroup();
+
+        return new ResponseEntity<Group>(group, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/{id}/group/program")
+    public ResponseEntity<Study_Program> getProgramForGroupForUser(@PathVariable("id") int id)
+    {
+        User user = null;
+        try
+        {
+            user = dao.getUser(id);
+        }
+        catch(NoResultException ex)
+        {
+            user = new User();
+        }
+
+        Study_Program study_program = user.getGroup().getStudy_program();
+
+        return new ResponseEntity<Study_Program>(study_program, HttpStatus.OK);
     }
 }

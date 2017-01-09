@@ -38,9 +38,6 @@ public class User {
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "student_nr")
-    private Integer studentId;
-
     @Column(name = "deleted_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedAt;
@@ -126,13 +123,6 @@ public class User {
         this.hvaId = hvaId;
     }
 
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
 
     public Date getDeletedAt() {
         return deletedAt;

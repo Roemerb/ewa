@@ -21,7 +21,7 @@ public class UserDao {
     @Transactional
     public List<User> getAllUsers()
     {
-        return em.createNamedQuery("Users.findAll", User.class).getResultList();
+        return em.createNamedQuery("User.findAll", User.class).getResultList();
     }
 
     @Transactional
