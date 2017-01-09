@@ -32,23 +32,23 @@ public class Grade {
     @Column(name = "passed")
     private int passed;
 
-    @Column(name = "user_id")
-    private int user_id;
-
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "exam_id")
-    public Exam exam;
+    private Exam exam;
 
-
-    public Grade(int id, String gradeType, String grade, int passed, int user_id, Exam exam)
+    public Grade(int id, String gradeType, String grade, int passed, User user, Exam exam)
     {
         setId(id);
         setGradeType(gradeType);
         setGrade(grade);
         setPassed(passed);
-        setUser_id(user_id);
+        setUser(user);
         setExam(exam);
     }
 
@@ -92,12 +92,14 @@ public class Grade {
         this.passed = passed;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public User getUser()
+    {
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser(User user)
+    {
+        this.user = user;
     }
 
     public void setExam(Exam exam)
