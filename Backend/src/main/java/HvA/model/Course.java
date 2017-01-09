@@ -1,6 +1,9 @@
 package HvA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "courses")
@@ -15,9 +18,6 @@ public class Course
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "study_program_id")
-    private int studyProgramId;
-
     @Column(name = "semester")
     private int semester;
 
@@ -30,15 +30,28 @@ public class Course
     @Column(name = "type")
     private String type;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    public Set<Exam> exams;
 
-    public Course(int id, int studyProgramId, int semester, String name, int ECTS, String type)
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "study_program_id")
+    private Study_Program study_program;
+
+    public Set<Exam> getExams()
     {
-        this.id = id;
-        this.studyProgramId = studyProgramId;
-        this.semester = semester;
-        this.name = name;
-        this.ECTS = ECTS;
-        this.type = type;
+        return exams;
+    }
+
+    public Course(int id, Study_Program study_program, int semester, String name, int ECTS, String type)
+    {
+        setId(id);
+        setStudy_program(study_program);
+        setSemester(semester);
+        setName(name);
+        setECTS(ECTS);
+        setType(type);
     }
 
     public Course()
@@ -55,14 +68,14 @@ public class Course
         this.id = id;
     }
 
-    public int getStudyProgramId()
+    public Study_Program getStudy_program()
     {
-        return studyProgramId;
+        return study_program;
     }
 
-    public void setStudyProgramId(int studyProgramId)
+    public void setStudy_program(Study_Program study_program)
     {
-        this.studyProgramId = studyProgramId;
+        this.study_program = study_program;
     }
 
     public int getSemester()

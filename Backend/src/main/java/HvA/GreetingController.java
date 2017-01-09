@@ -32,8 +32,8 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
 
-        User user = dao.getUser(1);
-        System.out.println(user.getId() + ", " + user.getFullName() + ",  IT WORKS!");
+//        User user = dao.getUser(1);
+//        System.out.println(user.getId() + ", " + user.getFullName() + ",  IT WORKS!");
 
         return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
