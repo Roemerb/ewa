@@ -1,5 +1,7 @@
 package HvA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -33,19 +35,29 @@ public class Grade {
     @Column(name = "user_id")
     private int user_id;
 
-    @Column(name = "exam_id")
-    private int exam_id;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "exam_id")
+    public Exam exam;
 
 
-    public Grade(String gradeType, String grade, int passed, int user_id, int exam_id) {
-        this.gradeType = gradeType;
-        this.grade = grade;
-        this.passed = passed;
-        this.user_id = user_id;
-        this.exam_id = exam_id;
+    public Grade(int id, String gradeType, String grade, int passed, int user_id, Exam exam)
+    {
+        setId(id);
+        setGradeType(gradeType);
+        setGrade(grade);
+        setPassed(passed);
+        setUser_id(user_id);
+        setExam(exam);
     }
 
     public Grade() {
+    }
+
+    public Exam getExam()
+    {
+        return exam;
     }
 
     public int getId() {
@@ -88,11 +100,8 @@ public class Grade {
         this.user_id = user_id;
     }
 
-    public int getExam_id() {
-        return exam_id;
-    }
-
-    public void setExam_id(int exam_id) {
-        this.exam_id = exam_id;
+    public void setExam(Exam exam)
+    {
+        this.exam = exam;
     }
 }

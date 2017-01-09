@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "exams")
@@ -21,6 +22,15 @@ public class Exam
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+
+    public Set<Grade> getGrades()
+    {
+        return grades;
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "exam")
+    public Set<Grade> grades;
 
     @Column(name = "location")
     private String location;

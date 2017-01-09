@@ -2,6 +2,8 @@ package HvA.Controllers;
 
 
 import HvA.dao.GradeDao;
+import HvA.model.Course;
+import HvA.model.Exam;
 import HvA.model.Grade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,37 @@ public class GradeController {
 
         return new ResponseEntity<Grade>(grade, HttpStatus.OK);
     }
+
+    @RequestMapping(value = "/grade/{id}/exam")
+    public ResponseEntity<Exam> getExamForGrade(@PathVariable("id") int id)
+    {
+        Grade grade = null;
+        try {
+            grade = dao.getGrade(id);
+        } catch (NoResultException ex) {
+            grade = new Grade();
+        }
+
+        Exam exam = grade.getExam();
+
+        return new ResponseEntity<Exam>(exam, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/grade/{id}/exam/course")
+    public ResponseEntity<Course> getCourseForExamForGrade(@PathVariable("id") int id)
+    {
+        Grade grade = null;
+        try {
+            grade = dao.getGrade(id);
+        } catch (NoResultException ex) {
+            grade = new Grade();
+        }
+
+        Course course = grade.getExam().getCourse();
+
+        return new ResponseEntity<Course>(course, HttpStatus.OK);
+    }
+
 
     @RequestMapping(value = "/grade", method = RequestMethod.GET)
     public List<Grade> getAllGrades() {
