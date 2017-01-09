@@ -23,10 +23,10 @@ import { IntlProvider } from 'react-intl'
 import MainContainer from './components/containers/Main'
 
 import HomePage from './components/pages/Home'
-
+import DashboardPage from './components/pages/Dashboard'
 import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
-import NotificationsPage from './components/pages/Notifications'
+import RegistergradePage from './components/pages/Registergrade'
 
 const initialState = {};
 
@@ -53,9 +53,9 @@ export default class App extends Component {
                 <Provider store={store}>
                     <Router history={history}>
                         <Route path="/" component={MainContainer}>
-                            <IndexRoute component={HomePage} />
-
-                            <Route path='/notifications' component={NotificationsPage} />
+                            <IndexRoute component={DashboardPage} />
+                            <Route path='/dashboard' component={DashboardPage} />
+                            <Route path='/registergrade' component={RegistergradePage} />
                         </Route>
                         <Route path='/login' component={LoginPage} />
                         <Route path='*' component={PageNotFound} />

@@ -1,7 +1,10 @@
 package HvA.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Project: Backend,
@@ -32,8 +35,8 @@ public class User {
     @Column(name = "hva_id")
     private String hvaId;
 
-    @Column(name = "student_nr")
-    private Integer studentId;
+    @Column(name = "active")
+    private boolean active;
 
     @Column(name = "deleted_at")
     @Temporal(TemporalType.TIMESTAMP)
@@ -47,10 +50,33 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Grade> grades;
 
 
+    public User()
+    {
 
-    public User() {
+    }
+
+    public User(int id, Group group, String firstName, String lastName, String email, boolean active, Date createdAt,
+                Date updatedAt, Date deletedAt)
+    {
+        setId(id);
+        setGroup(group);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setEmail(email);
+        setActive(active);
+        setCreatedAt(createdAt);
+        setUpdatedAt(updatedAt);
+        setDeletedAt(deletedAt);
     }
 
     public User(Integer id) {
@@ -97,13 +123,6 @@ public class User {
         this.hvaId = hvaId;
     }
 
-    public Integer getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
-    }
 
     public Date getDeletedAt() {
         return deletedAt;
@@ -138,5 +157,28 @@ public class User {
         return firstName + " " + lastName;
     }
 
+    public Group getGroup()
+    {
+        return group;
+    }
 
+    public void setGroup(Group group)
+    {
+        this.group = group;
+    }
+
+    public boolean isActive()
+    {
+        return active;
+    }
+
+    public void setActive(boolean active)
+    {
+        this.active = active;
+    }
+
+    public Set<Grade> getGrades()
+    {
+        return grades;
+    }
 }
