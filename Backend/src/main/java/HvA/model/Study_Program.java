@@ -8,8 +8,8 @@ import java.util.Set;
 @Entity
 @Table(name = "study_programs")
 @NamedQueries({
-        @NamedQuery(name = "StudyProgram.findAll", query="SELECT sg FROM Study_Group sg"),
-        @NamedQuery(name = "StudyProgram.find", query="SELECT sg FROM Study_Group sg WHERE id = :id")
+        @NamedQuery(name = "StudyProgram.findAll", query="SELECT sg FROM Group sg"),
+        @NamedQuery(name = "StudyProgram.find", query="SELECT sg FROM Group sg WHERE id = :id")
 })
 public class Study_Program
 {

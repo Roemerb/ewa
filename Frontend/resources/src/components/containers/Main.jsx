@@ -9,7 +9,7 @@ export default class MainContainer extends Component {
             <div id="main-div">
                 <NavBar />
                 <div className="main">
-                    <div class="row">
+                    <div className="row">
                         <div className="col-xs-12 progress-box">
                             {this.props.children}
                         </div>
