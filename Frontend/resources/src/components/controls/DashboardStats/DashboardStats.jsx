@@ -9,36 +9,78 @@ export default class DashboardStats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {data: []};
+        this.state = {data: [], ects: 0};
+
     }
 
     componentDidMount() {
-        this.getDataFromServer('http://localhost:8080/limitedPersonal/5/1');
-    }
+        this.getGradesFromServer('http://localhost:8080/limitedPersonal/5/1');
 
-    //showResult Method
-    showResult(response) {
-
-        this.setState({
-                data: response
-            }
-        );
     }
 
     //making ajax call to get data from server
-    getDataFromServer(URL) {
+    getGradesFromServer(URL) {
         $.ajax({
             type: "GET",
             dataType: "json",
             url: URL,
             success: function (response) {
-                this.showResult(response);
+                this.AddToArray(response);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     }
+    AddECTS(ectsCount) {
+
+        this.setState({
+                ects: ectsCount
+            }
+        );
+
+
+    }
+    //showResult Method
+    AddToArray(response) {
+
+        this.setState({
+                data: response
+            }
+        );
+
+        console.log(this.state.ects)
+        this.state.data.map(function (data) {
+            var ects = 0
+                if (data.passed == 1) {
+                    console.log(data.id);
+
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        url: 'http://localhost:8080/grade/' + data.id + '/exam/course',
+                        success: function (response) {
+
+                            if (data.passed == 1)(
+                                ects = ects + response.ects
+                            )
+
+                        }.bind(this),
+                        error: function (xhr, status, err) {
+                            console.error(this.props.url, status, err.toString());
+                        }.bind(this)
+                    });
+                }
+
+            }
+        )
+        AddECTS(ects)
+        ;
+    }
+
+
+
+
 
     render() {
 
@@ -47,7 +89,7 @@ export default class DashboardStats extends React.Component {
                 <div className="progressbar-container">
 
 
-                    <ProgressBar behaald={this.props.behaald} vereist={this.props.vereist}/>
+                    <ProgressBar behaald={this.state.ects} vereist={this.props.vereist}/>
 
                     <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald}
                         behaald, {this.props.vereist - this.props.behaald} nodig</p>

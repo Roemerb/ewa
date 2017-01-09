@@ -19,21 +19,16 @@ export default class DashboardTable extends React.Component {
                 </thead>
                 <tbody>
                 {
-
-
-
                     this.props.result.map(function (result) {
-                    return (
-                        <tr key={result.id}>
-                            <td>{result.id}</td>
-                            <td>{result.exam_id}</td>
-                            <td>{result.gradeType}</td>
-                            <td>{result.grade}</td>
-                            <td>{result.passed == 1 && "Gehaald" || "niet behaald"}</td>
-
-
-                        </tr>)
-                })}
+                        return (
+                            <tr key={result.id}>
+                                <td>{result.id}</td>
+                                <td>{result.exam_id}</td>
+                                <td>{result.gradeType}</td>
+                                <td>{result.grade}</td>
+                                <td>{result.passed == 1 && "Gehaald" || "niet behaald"}</td>
+                            </tr>)
+                    })}
                 </tbody>
 
             </table>
