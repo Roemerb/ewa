@@ -22,15 +22,21 @@ export default class NavBar extends React.Component {
 
                     <div className="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
                         <ul className="nav navbar-nav">
-                            <li className="active">
-                                <a href="/dashboard">
-                                    Dashboard
+                            <li >
+                                <a href="/">
+                                    Home
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-home"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/progress">
+                                    Progress
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-dashboard"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Subscriptions
+                                <a href="/requirements">
+                                    Study Requirements
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
                                 </a>
                             </li>
@@ -53,8 +59,8 @@ export default class NavBar extends React.Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
-                                    Messages
+                                <a href="notifications">
+                                    Notifications
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-envelope"></span>
                                 </a>
                             </li>

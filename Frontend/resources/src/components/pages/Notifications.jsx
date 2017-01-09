@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import ProgressStats from '../controls/DashboardStats'
+import NotificationsInbox from '../controls/Notifications'
 
-export default class HomePage extends Component {
+export default class NotificationsPage extends Component {
 
 
     render () {
         return (
             <div>
                 <div className="push-30"></div>
-                <h1 className="title">Dashboard</h1>
-                <ProgressStats vereist={60} behaald={10}/>
+                <h1 className="text-center title">Notifications</h1>
+                <NotificationsInbox />
             </div>
         )
     }
