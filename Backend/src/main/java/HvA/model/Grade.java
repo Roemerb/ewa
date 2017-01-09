@@ -4,11 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 
-/**
- * Project: Backend,
- * Created by Kadir Basturk on 6-10-2016.
- * Help by René Sasbrink
- */
 @Entity
 @Table(name = "grades")
 @NamedQueries(value = {
