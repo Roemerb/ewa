@@ -22,6 +22,14 @@ export default class StudentTable extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
+                        <tr>
+                            <td><select> <option value="SE">Software Engineer</option></select></td>
+                            <td><select> <option value="Class">IS205</option></select></td>
+                            <td><select> <option value="Student #">500728417</option></select></td>
+                            <td><select> <option value="Student">Joshua Turpijn</option></select></td>
+                            <td><input type="text" name="Grade"></input></td>
+                            <td><select> <option value="Passed">✓</option></select></td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

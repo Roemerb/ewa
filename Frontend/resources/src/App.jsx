@@ -26,7 +26,7 @@ import HomePage from './components/pages/Home'
 import DashboardPage from './components/pages/Dashboard'
 import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
-import RequirementsPage from './components/pages/Study_Requirements'
+import RegistergradePage from './components/pages/Registergrade'
 
 const initialState = {};
 
@@ -55,7 +55,7 @@ export default class App extends Component {
                         <Route path="/" component={MainContainer}>
                             <IndexRoute component={DashboardPage} />
                             <Route path='/dashboard' component={DashboardPage} />
-                            <Route path='/requirements' component={RequirementsPage} />
+                            <Route path='/registergrade' component={RegistergradePage} />
                         </Route>
                         <Route path='/login' component={LoginPage} />
                         <Route path='*' component={PageNotFound} />
