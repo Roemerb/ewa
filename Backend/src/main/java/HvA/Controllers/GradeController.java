@@ -79,7 +79,8 @@ public class GradeController {
     }
 
     @RequestMapping(value = "/grade/create", method = RequestMethod.POST)
-    public ResponseEntity<Grade> createGrade(@RequestBody Grade grade) {
+    public ResponseEntity<Grade> createGrade(@RequestBody Grade grade)
+    {
         dao.createGrade(grade);
 
         return new ResponseEntity<Grade>(grade, HttpStatus.OK);

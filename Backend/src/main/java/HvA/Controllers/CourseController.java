@@ -41,9 +41,7 @@ public class CourseController
     @RequestMapping(value = "/course", method = RequestMethod.GET)
     public List<Course> getAllCourses()
     {
-        List<Course> courses = dao.getAllCourses();
-
-        return courses;
+        return dao.getAllCourses();
     }
 
     @RequestMapping(value="/course/{id}/exams")
