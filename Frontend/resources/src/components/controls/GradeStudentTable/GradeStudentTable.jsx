@@ -4,6 +4,7 @@
 import React from "react";
 
 export default class StudentTable extends React.Component {
+
     render() {
 
         return (
@@ -13,10 +14,11 @@ export default class StudentTable extends React.Component {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Study</th>
+                                <th>Study Name</th>
                                 <th>Class</th>
-                                <th>student #</th>
-                                <th>Student</th>
+                                <th>student nr</th>
+                                <th>Student </th>
+                                <th>Course </th>
                                 <th>Grade</th>
                                 <th>behaald</th>
                             </tr>
@@ -27,6 +29,7 @@ export default class StudentTable extends React.Component {
                             <td><select> <option value="Class">IS205</option></select></td>
                             <td><select> <option value="Student #">500728417</option></select></td>
                             <td><select> <option value="Student">Joshua Turpijn</option></select></td>
+                            <td><select> <option value="Course">Joshua Turpijn</option></select></td>
                             <td><input type="text" name="Grade"></input></td>
                             <td><select> <option value="Passed">✓</option></select></td>
                         </tr>

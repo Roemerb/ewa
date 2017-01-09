@@ -3,16 +3,15 @@
  */
 import React from "react";
 
-import {StudentTable,ClassTable} from "../GradeStudentTable"
+import {StudyTable, ClassTable, StudentTable} from "../GradeStudentTable"
+import {ClassStats, StudentStats} from "../GradeStudentStats"
 
-export default class StudentStats extends React.Component {
-
+export default class GradeStudentStats extends React.Component {
 
     render() {
         return (
         <div>
-            <StudentTable />
-            <ClassTable />
+            <StudyStats />
         </div>
         );
     }

@@ -4,6 +4,7 @@
 import React from "react";
 
 export default class StudyTable extends React.Component {
+
     render() {
 
         return (
@@ -13,15 +14,18 @@ export default class StudyTable extends React.Component {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Study</th>
-                                <th>Class</th>
-                                <th>student #</th>
-                                <th>Student</th>
-                                <th>Grade</th>
-                                <th>behaald</th>
+                                <th>Study Name</th>
                             </tr>
                         </thead>
                         <tbody>
+                                {
+                                this.props.result.map(function (result) {
+                                return (
+                                    <tr key={result.id}>
+                                <td><select> <option value="Class">IS205</option></select></td>
+                                        <td><select> <option value="Class">{result.name}</option></select></td>
+                                    </tr>)
+                                })}
                         </tbody>
                     </table>
                 </div>
