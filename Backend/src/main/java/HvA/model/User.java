@@ -123,7 +123,6 @@ public class User {
         this.hvaId = hvaId;
     }
 
-
     public Date getDeletedAt() {
         return deletedAt;
     }
