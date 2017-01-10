@@ -16,7 +16,6 @@ export default class StudentTable extends React.Component {
                             <tr>
                                 <th>Study Name</th>
                                 <th>Class</th>
-                                <th>student nr</th>
                                 <th>Student </th>
                                 <th>Course </th>
                                 <th>Grade</th>
@@ -24,16 +23,40 @@ export default class StudentTable extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><select> <option value="SE">Software Engineer</option></select></td>
-                            <td><select> <option value="Class">IS205</option></select></td>
-                            <td><select> <option value="Student #">500728417</option></select></td>
-                            <td><select> <option value="Student">Joshua Turpijn</option></select></td>
-                            <td><select> <option value="Course">Joshua Turpijn</option></select></td>
-                            <td><input type="text" name="Grade"></input></td>
-                            <td><select> <option value="Passed">✓</option></select></td>
-                        </tr>
+
+                        {
+                            this.props.result.map(function (result) {
+
+                                var coursename = 'test'
+
+
+                                $.ajax({
+                                    type: "GET",
+                                    dataType: "json",
+                                    url: 'http://localhost:8080/grade/' + result.id + '/exam/course',
+                                    success: function (response) {
+                                        coursename = response;
+                                        console.log(coursename);
+                                    }.bind(this),
+                                    error: function (xhr, status, err) {
+                                        console.error(this.props.url, status, err.toString());
+                                    }.bind(this)
+                                });
+                                console.log(coursename);
+
+                                return (
+
+                                    <tr key={result.id}>
+                                        <td><select> <option value="SE">{result.ects}</option></select></td>
+                                        <td><select> <option value="Class">{result.id}</option></select></td>
+                                        <td><select> <option value="Student #">{result.grade}</option></select></td>
+                                        <td><select> <option value="Course">{result.gradeType}</option></select></td>
+                                        <td><input type="text" name="Grade"></input></td>
+                                        <td><select> <option value="Passed">✓</option></select></td>
+                                    </tr>)
+                            })}
                         </tbody>
+
                     </table>
                 </div>
             </div>
