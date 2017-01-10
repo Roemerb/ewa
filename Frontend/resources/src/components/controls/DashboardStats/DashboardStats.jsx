@@ -9,12 +9,12 @@ export default class DashboardStats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {data: [], ects: 0};
+        this.state = {data: []};
 
     }
 
     componentDidMount() {
-        this.getGradesFromServer('http://localhost:8080/limitedPersonal/5/1');
+        this.getGradesFromServer('http://localhost:8080/user/1/grades');
 
     }
 
@@ -31,14 +31,6 @@ export default class DashboardStats extends React.Component {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
-    }
-    AddECTS(ectsCount) {
-
-        this.setState({
-                ects: ectsCount
-            }
-        );
-
 
     }
     //showResult Method
@@ -50,9 +42,32 @@ export default class DashboardStats extends React.Component {
         );
 
         console.log(this.state.ects)
+        this.state.data.map(function (data) {
+            var ects = 0
+                if (data.passed == 1) {
+                    console.log(data.id);
 
+                    $.ajax({
+                        type: "GET",
+                        dataType: "json",
+                        url: 'http://localhost:8080/grade/' + data.id + '/exam/course',
+                        success: function (response) {
 
+                            if (data.passed == 1)(
+                                ects = ects + response.ects
+                            )
 
+                        }.bind(this),
+                        error: function (xhr, status, err) {
+                            console.error(this.props.url, status, err.toString());
+                        }.bind(this)
+                    });
+                }
+
+            }
+        )
+
+        ;
     }
 
 
@@ -66,11 +81,11 @@ export default class DashboardStats extends React.Component {
                 <div className="progressbar-container">
 
 
-                    <ProgressBar behaald={this.state.ects} vereist={this.props.vereist}/>
+                    <ProgressBar behaald={this.props.behaald} vereist={this.props.vereist}/>
 
                     <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald} behaald, {this.props.vereist - this.props.behaald} nodig</p>
-
-
+                    <p>Studiedelen: 13 vereist, 6 behaald, 7 nodig</p>
+                    <button disabled>Propedeuse verzoek genereren</button>
                 </div>
                 <div>
                     <div className="row">
@@ -78,7 +93,12 @@ export default class DashboardStats extends React.Component {
 
                             <h2>Periode</h2>
                         </div>
+                        <div className="col-xs-6 rem-padding-right">
+                            <div className="pull-right blok-progressbar">
 
+
+                            </div>
+                        </div>
                         <div className="col-xs-12">
                             <ProgressTable result={this.state.data}/>
                         </div>

@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-
-import ProgressStats from '../controls/DashboardStats'
+import React, {Component, PropTypes} from "react";
+import {connect} from "react-redux";
+import ProgressStats from "../controls/DashboardStats";
 
 export default class HomePage extends Component {
 
@@ -11,7 +10,7 @@ export default class HomePage extends Component {
     }
 
     componentDidMount() {
-        this.getDataFromServer('http://localhost:8080/limitedPersonal/5/1');
+        this.getDataFromServer('http://localhost:8080/user/1/grades');
     }
 
     showResult(response) {
@@ -35,11 +34,11 @@ export default class HomePage extends Component {
         });
     }
 
-    render () {
+    render() {
         var behaald = this.state.data.reduce(function (previous, next) {
-            console.log(next.ects);
             return previous + (next.passed ? next.ects : 0);
         }, 0 /* initialValue */);
+
 
         return (
             <div>
