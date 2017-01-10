@@ -47,7 +47,7 @@ export default class DashboardTable extends React.Component {
                                 <td>{result.exam.course.name}</td>
                                 <td>{result.gradeType}</td>
                                 <td>{result.grade}</td>
-                                <td>{result.passed == 1 && "Gehaald" || "niet behaald"}</td>
+                                <td>{result.passed == 1 && "Behaald" || "Niet Behaald"}</td>
                             </tr>)
                     })}
                 </tbody>
