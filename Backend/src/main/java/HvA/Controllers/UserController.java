@@ -1,6 +1,7 @@
 package HvA.Controllers;
 
 import HvA.dao.UserDao;
+import HvA.model.Grade;
 import HvA.model.Group;
 import HvA.model.Study_Program;
 import HvA.model.User;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @RestController
 public class UserController
@@ -82,5 +84,21 @@ public class UserController
         Study_Program study_program = user.getGroup().getStudy_program();
 
         return new ResponseEntity<Study_Program>(study_program, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/user/{id}/grades")
+    public Set<Grade> getUserGrades(@PathVariable("id") int id)
+    {
+        User user = null;
+        try
+        {
+            user = dao.getUser(id);
+        }
+        catch(NoResultException ex)
+        {
+            user = new User();
+        }
+
+        return user.getGrades();
     }
 }

@@ -32,7 +32,6 @@ public class Grade {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;
