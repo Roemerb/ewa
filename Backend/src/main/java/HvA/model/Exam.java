@@ -17,7 +17,7 @@ public class Exam
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
