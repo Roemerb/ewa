@@ -4,6 +4,7 @@
 import React from "react";
 import ProgressBar from "../DashboardProgressBar";
 import ProgressTable from "../DashboardTable";
+import GradesTable from "../GradesTable";
 
 export default class DashboardStats extends React.Component {
 
@@ -70,10 +71,6 @@ export default class DashboardStats extends React.Component {
         ;
     }
 
-
-
-
-
     render() {
 
         return (
@@ -99,7 +96,7 @@ export default class DashboardStats extends React.Component {
                             </div>
                         </div>
                         <div className="col-xs-12">
-                            <ProgressTable result={this.state.data}/>
+                            <GradesTable grades={this.state.data}/>
                         </div>
                     </div>
                 </div>

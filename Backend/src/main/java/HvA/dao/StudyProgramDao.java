@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -17,13 +19,16 @@ public class StudyProgramDao
     @Transactional
     public List<Study_Program> getAllStudyPrograms()
     {
-        return em.createNamedQuery("StudyProgram.findAll", Study_Program.class).getResultList();
+        Query query = em.createQuery("SELECT sg FROM Group sg");
+        return new ArrayList<Study_Program>(query.getResultList());
     }
 
     @Transactional
     public Study_Program getStudyProgram(int id)
     {
-        return em.createNamedQuery("StudyProgram.find", Study_Program.class).setParameter("id", id).getSingleResult();
+        Query query = em.createQuery("SELECT sg FROM Group sg WHERE id  = :id", Study_Program.class);
+
+        return (Study_Program) query.getSingleResult();
     }
 
     @Transactional

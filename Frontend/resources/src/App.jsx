@@ -6,6 +6,7 @@ import { applyMiddleware, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+import { Button } from 'react-bootstrap';
 
 // ---------------------
 // Reducers

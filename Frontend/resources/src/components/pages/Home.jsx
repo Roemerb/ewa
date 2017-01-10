@@ -20,18 +20,22 @@ export default class HomePage extends Component {
         );
     }
 
-    getDataFromServer(URL) {
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url: URL,
-            success: function (response) {
-                this.showResult(response);
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.error(this.props.url, status, err.toString());
-            }.bind(this)
-        });
+    getDataFromServer(URL)
+    {
+        var context = this;
+        fetch(URL)
+            .then(
+                function(response) {
+                    if (response.status !== 200) {
+                        console.log('Error fetching: ' + URL + ' Status: ' + response.status);
+                        return;
+                    }
+
+                    response.json().then(function(data) {
+                        context.showResult(data);
+                    });
+                }
+            )
     }
 
     render() {
