@@ -27,6 +27,7 @@ import HomePage from './components/pages/Home'
 import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
 import NotificationsPage from './components/pages/Notifications'
+import RetakesPage from './components/pages/Retakes'
 
 const initialState = {};
 
@@ -56,7 +57,9 @@ export default class App extends Component {
                             <IndexRoute component={HomePage} />
 
                             <Route path='/notifications' component={NotificationsPage} />
+                            <Route path='/retakes' component={RetakesPage} />
                         </Route>
+
                         <Route path='/login' component={LoginPage} />
                         <Route path='*' component={PageNotFound} />
                     </Router>
