@@ -8,8 +8,9 @@ import java.util.Set;
 @Entity
 @Table(name = "study_programs")
 @NamedQueries({
-        @NamedQuery(name = "StudyProgram.findAll", query="SELECT sg FROM Study_Program sg"),
-        @NamedQuery(name = "StudyProgram.find", query="SELECT sg FROM Study_Program sg WHERE id = :id")
+        @NamedQuery(name = "StudyProgram.findAll", query="SELECT sg FROM Group sg"),
+        @NamedQuery(name = "StudyProgram.find", query="SELECT sg FROM Group sg WHERE id = :id")
+
 })
 public class Study_Program
 {
@@ -26,7 +27,7 @@ public class Study_Program
     @Column(name = "duration_years")
     int durationYears;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "study_program")
     Set<Group> groups;
 

@@ -30,18 +30,11 @@ export default class Login extends Component {
                                 <form role="form"  method="post">
                                     Select a user
                                     <div className="form-group">
-                                    <a href="/?id=1">Log in as student with id 1</a>
+                                    <a href="/">Log in as student with id 1</a>
 
 
                                     </div>
-                                    <div className="form-group">
-                                        <a href="/">Log in as student with id 2</a>
-
-
-                                    </div>
-                                    <div className="form-group">
-                                        <a href="/">Log in as teacher</a>
-                                    </div>
+                                   
 
                                 </form>
                             </div>

@@ -6,6 +6,7 @@ import { applyMiddleware, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 import { routerMiddleware, syncHistoryWithStore } from 'react-router-redux'
+import { Button } from 'react-bootstrap';
 
 // ---------------------
 // Reducers
@@ -26,6 +27,7 @@ import HomePage from './components/pages/Home'
 
 import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
+import RegisterGradePage from './components/pages/RegisterGrade'
 import NotificationsPage from './components/pages/Notifications'
 
 const initialState = {};
@@ -54,7 +56,7 @@ export default class App extends Component {
                     <Router history={history}>
                         <Route path="/" component={MainContainer}>
                             <IndexRoute component={HomePage} />
-
+                            <Route path ='/registergrade' component={RegisterGradePage} />
                             <Route path='/notifications' component={NotificationsPage} />
                         </Route>
                         <Route path='/login' component={LoginPage} />

@@ -4,17 +4,18 @@
 import React from "react";
 import ProgressBar from "../DashboardProgressBar";
 import ProgressTable from "../DashboardTable";
+import GradesTable from "../GradesTable";
 
 export default class DashboardStats extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {data: [], ects: 0};
+        this.state = {data: []};
 
     }
 
     componentDidMount() {
-        this.getGradesFromServer('http://localhost:8080/limitedPersonal/5/1');
+        this.getGradesFromServer('http://localhost:8080/user/1/grades');
 
     }
 
@@ -31,14 +32,6 @@ export default class DashboardStats extends React.Component {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
-    }
-    AddECTS(ectsCount) {
-
-        this.setState({
-                ects: ectsCount
-            }
-        );
-
 
     }
     //showResult Method
@@ -74,13 +67,9 @@ export default class DashboardStats extends React.Component {
 
             }
         )
-        AddECTS(ects)
+
         ;
     }
-
-
-
-
 
     render() {
 
@@ -89,12 +78,10 @@ export default class DashboardStats extends React.Component {
                 <div className="progressbar-container">
 
 
-                    <ProgressBar behaald={this.state.ects} vereist={this.props.vereist}/>
+                    <ProgressBar behaald={this.props.behaald} vereist={this.props.vereist}/>
 
-                    <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald}
-                        behaald, {this.props.vereist - this.props.behaald} nodig</p>
-                    <p>Studiedelen: 13 vereist, 6 behaald, 7 nodig</p>
-                    <button disabled>Propedeuse verzoek genereren</button>
+                    <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald} behaald, {this.props.vereist - this.props.behaald} nodig</p>
+
                 </div>
                 <div>
                     <div className="row">
@@ -104,13 +91,12 @@ export default class DashboardStats extends React.Component {
                         </div>
                         <div className="col-xs-6 rem-padding-right">
                             <div className="pull-right blok-progressbar">
-                                <ProgressBar behaald="5" vereist="15"/>
-                                19 behaald, nog 3 nodig voor dit blok<br/>
-                                Gemiddelde: 17 punten
+
+
                             </div>
                         </div>
                         <div className="col-xs-12">
-                            <ProgressTable result={this.state.data}/>
+                            <GradesTable grades={this.state.data}/>
                         </div>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @NamedQueries(value = {
         @NamedQuery(name = "Grade.get", query = "SELECT c FROM Grade c WHERE id = :id"),
         @NamedQuery(name = "Grade.getAll", query = "SELECT c FROM Grade c"),
-        @NamedQuery(name = "Grade.getAllByUser", query = "SELECT c FROM Grade c WHERE user_id = :id"),
+        @NamedQuery(name = "Grade.getAllByUser", query = "SELECT g FROM Grade g INNER JOIN Exam e ON g.exam.id = e.id INNER JOIN Course c ON e.course.id = c.id WHERE g.user.id = :id"),
 
 })
 public class Grade {
@@ -100,4 +100,6 @@ public class Grade {
     {
         this.exam = exam;
     }
+
+    public int getECTS() { return exam.getCourse().getECTS(); }
 }
