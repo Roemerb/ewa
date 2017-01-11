@@ -4,6 +4,8 @@ import ProgressStats from "../controls/DashboardStats";
 
 export default class HomePage extends Component {
 
+    host = "http://localhost:8080";
+
     constructor(props) {
         super(props);
         this.state = {data: []};

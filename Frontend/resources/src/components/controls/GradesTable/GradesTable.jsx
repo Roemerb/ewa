@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/lib/Table';
+import GradeDetailModal from '../GradeDetailModal';
 
 export default class GradesTable extends React.Component {
     render()
@@ -49,7 +50,7 @@ export default class GradesTable extends React.Component {
                                 <td>{passed}</td>
                                 <td>{type}</td>
                                 <td>{grade.exam.course.ects}</td>
-                                <td>{view}</td>
+                                <td><GradeDetailModal grade={grade}/></td>
                             </tr>
                         );
                     })

@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 var production = (process.env.NODE_ENV === 'production');
+var WebpackNotifierPlugin = require('webpack-notifier');
+
 
 var bundle = ['./resources/index'];
 var plugins = [
@@ -51,7 +53,8 @@ var webpackConfig = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development'),
             '__DEV__': JSON.stringify(process.env.NODE_ENV !== 'production')
-        })
+        }),
+        new WebpackNotifierPlugin()
     ],
     resolve: {
         alias: {
