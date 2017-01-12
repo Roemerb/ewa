@@ -50,7 +50,6 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;

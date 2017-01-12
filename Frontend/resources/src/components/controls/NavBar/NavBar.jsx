@@ -3,8 +3,14 @@
  */
 
 import React from "react";
+import UserStore from '../../../stores/UserStore';
 
 export default class NavBar extends React.Component {
+
+    constructor() {
+        super();
+        console.log('User as seen by the sidebar: ', UserStore.get());
+    }
 
     render() {
         return (
@@ -18,6 +24,9 @@ export default class NavBar extends React.Component {
                             <span className="icon-bar"></span>
                         </button>
                         <a className="navbar-brand" href="/">SIS</a>
+                        <p>
+
+                        </p>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">

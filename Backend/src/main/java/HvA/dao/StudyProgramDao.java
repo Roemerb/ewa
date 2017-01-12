@@ -19,16 +19,13 @@ public class StudyProgramDao
     @Transactional
     public List<Study_Program> getAllStudyPrograms()
     {
-        Query query = em.createQuery("SELECT sg FROM Group sg");
-        return new ArrayList<Study_Program>(query.getResultList());
+        return em.createNamedQuery("StudyProgram.findAll", Study_Program.class).getResultList();
     }
 
     @Transactional
     public Study_Program getStudyProgram(int id)
     {
-        Query query = em.createQuery("SELECT sg FROM Group sg WHERE id  = :id", Study_Program.class);
-
-        return (Study_Program) query.getSingleResult();
+        return em.createNamedQuery("StudyProgram.find", Study_Program.class).setParameter("id", id).getSingleResult();
     }
 
     @Transactional
