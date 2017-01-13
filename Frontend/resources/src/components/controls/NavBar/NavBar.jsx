@@ -64,6 +64,12 @@ export default class NavBar extends React.Component {
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-envelope"></span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="retakes">
+                                    Herkansingen
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicon-align-center"></span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
