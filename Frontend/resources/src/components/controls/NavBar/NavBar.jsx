@@ -9,7 +9,6 @@ export default class NavBar extends React.Component {
 
     constructor() {
         super();
-        console.log('User as seen by the sidebar: ', UserStore.get());
     }
 
     render() {

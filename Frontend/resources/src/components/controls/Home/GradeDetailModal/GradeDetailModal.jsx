@@ -1,7 +1,8 @@
 import React from "react";
 import Button from 'react-bootstrap/lib/Button';
 import Modal from 'react-bootstrap/lib/Modal';
-import GradeDetailModalTable from '../GradeDetailModalTable';
+import GradeDetailModalContent from '../GradeDetailModalContent';
+import ExamTabs from '../GradeDetailModalContent/ExamTabs';
 
 export default class GradeDetailModal extends React.Component
 {
@@ -16,19 +17,33 @@ export default class GradeDetailModal extends React.Component
         this.openModal = this.openModal.bind(this);
 
         this.state = {
-            open: false
+            open: false,
+            exams: []
         };
 
-        console.log('GRADE:');
-        console.log(this.props);
+        this.fetchExams(this.props.grade.exam.course.id);
+    }
+
+    fetchExams(courseId)
+    {
+        fetch('http://localhost:8080/course/'+courseId+'/exams')
+            .then((response) => {
+                response.json().then((data) => {
+                    this.exams = data;
+                });
+            })
     }
 
     closeModal() {
-        this.setState({open: false});
+        this.setState({
+            open: false
+        });
     }
 
     openModal() {
-        this.setState({open: true});
+        this.setState({
+            open: true
+        });
     }
 
     render() {
@@ -40,7 +55,7 @@ export default class GradeDetailModal extends React.Component
                         <Modal.Title>Cijfer voor {this.props.grade.exam.course.name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <GradeDetailModalTable grade={this.props.grade}/>
+                        <GradeDetailModalContent grade={this.props.grade}/>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button onClick={this.closeModal}>Sluiten</Button>
