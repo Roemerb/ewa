@@ -21,7 +21,6 @@ public class Group
     @Column(name = "graduation_year")
     private Date year;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "study_program_id")
     private Study_Program study_program;

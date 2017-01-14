@@ -30,6 +30,9 @@ public class Study_Program
     @OneToMany(mappedBy = "study_program")
     Set<Group> groups;
 
+    @OneToMany(mappedBy = "study_program")
+    Set<Course> courses;
+
     public Study_Program()
     {
 
@@ -86,5 +89,9 @@ public class Study_Program
     public Set<Group> getGroups()
     {
         return groups;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
     }
 }

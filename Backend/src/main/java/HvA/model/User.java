@@ -50,7 +50,6 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
@@ -122,7 +121,6 @@ public class User {
     public void setHvaId(String hvaId) {
         this.hvaId = hvaId;
     }
-
 
     public Date getDeletedAt() {
         return deletedAt;

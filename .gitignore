@@ -75,4 +75,6 @@ crashlytics-build.properties
 fabric.properties
 
 Frontend/node_modules/*
+Frontend/node_modules
+Frontend/node_modules/
 Frontend/npm-debug*

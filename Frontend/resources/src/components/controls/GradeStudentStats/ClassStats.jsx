@@ -2,7 +2,7 @@
  * Created by Joshua on 04-01-2017.
  */
 import React from "react";
-import {ClassTable} from './GradeStudentTable'
+import {ClassTable} from '../GradeStudentTable'
 
 export default class StudyStats extends React.Component {
     constructor(props) {
@@ -11,7 +11,7 @@ export default class StudyStats extends React.Component {
     }
 
     componentDidMount() {
-        this.getDataFromServer('http://localhost:8080/limitedPersonal/5/1');
+        this.getDataFromServer('http://localhost:8080/single/studyprogram/1');
     }
 
     //showResult Method
