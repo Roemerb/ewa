@@ -4,17 +4,31 @@
 
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
-
+import UserStore from '../../stores/UserStore';
+import * as UserActions from '../../actions/UserActions';
+import { browserHistory } from 'react-router'
+import Button from 'react-bootstrap/lib/Button';
 
 export default class Login extends Component {
     constructor() {
         super();
 
-        this.state = {
-            user: "",
-            pass: ""
-        };
+        this.setState({
+            user: {}
+        })
+    }
+
+    componentWillMount() {
+        UserStore.on('change',() => {
+            this.setState({
+                user: UserStore.get()
+            });
+            browserHistory.push('/');
+        });
+    }
+
+    login(id) {
+        UserActions.userLogin(id);
     }
 
     render() {
@@ -30,12 +44,8 @@ export default class Login extends Component {
                                 <form role="form"  method="post">
                                     Select a user
                                     <div className="form-group">
-                                    <a href="/">Log in as student with id 1</a>
-
-
+                                        <Button onClick={this.login(1)}>Login with ID 1</Button>
                                     </div>
-                                   
-
                                 </form>
                             </div>
                         </div>

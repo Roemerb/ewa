@@ -3,20 +3,29 @@
  */
 import React from "react";
 import ProgressBar from "../DashboardProgressBar";
-import ProgressTable from "../DashboardTable";
 import GradesTable from "../GradesTable";
+import PositiveBSA from './PositiveBSA';
+import NegativeBSA from './NegativeBSA';
 
 export default class DashboardStats extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {data: []};
-
+        this.fetchGrades();
     }
 
     componentDidMount() {
         this.getGradesFromServer('http://localhost:8080/user/1/grades');
+    }
 
+    fetchGrades() {
+        fetch('http://localhost:8080/user/1/grades')
+            .then((response) => {
+                response.json().then((data) => {
+                    this.grades = data;
+                });
+            });
     }
 
     //making ajax call to get data from server
@@ -42,11 +51,9 @@ export default class DashboardStats extends React.Component {
             }
         );
 
-        console.log(this.state.ects)
         this.state.data.map(function (data) {
             var ects = 0
                 if (data.passed == 1) {
-                    console.log(data.id);
 
                     $.ajax({
                         type: "GET",
@@ -66,9 +73,18 @@ export default class DashboardStats extends React.Component {
                 }
 
             }
-        )
+        );
+    }
 
-        ;
+    BSA() {
+        if (this.props.behaald < 50)
+        {
+            return <NegativeBSA received={this.props.behaald}/>
+        }
+        else
+        {
+            return <PositiveBSA/>
+        }
     }
 
     render() {
@@ -80,8 +96,8 @@ export default class DashboardStats extends React.Component {
 
                     <ProgressBar behaald={this.props.behaald} vereist={this.props.vereist}/>
 
-                    <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald} behaald, {this.props.vereist - this.props.behaald} nodig</p>
-
+                    <p>Studiepunten (eenh.): {this.props.vereist} vereist, {this.props.behaald} behaald, {this.props.vereist - this.props.behaald} nog te behalen</p>
+                    {this.BSA()}
                 </div>
                 <div>
                     <div className="row">

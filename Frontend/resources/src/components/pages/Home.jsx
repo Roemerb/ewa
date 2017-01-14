@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
-import ProgressStats from "../controls/DashboardStats";
+import ProgressStats from "../controls/Home/DashboardStats";
 
 export default class HomePage extends Component {
 
@@ -12,7 +12,7 @@ export default class HomePage extends Component {
     }
 
     componentDidMount() {
-        this.getDataFromServer('http://localhost:8080/user/1/grades');
+        this.getDataFromServer(this.host + '/user/1/grades');
     }
 
     showResult(response) {

@@ -3,6 +3,7 @@ import Table from 'react-bootstrap/lib/Table';
 import GradeDetailModal from '../GradeDetailModal';
 
 export default class GradesTable extends React.Component {
+
     render()
     {
         return (

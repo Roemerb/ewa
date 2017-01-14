@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from 'react-bootstrap/lib/Table';
 
-export default class GradeDetailModalTable extends React.Component {
+export default class GradeDetailModalContent extends React.Component {
 
     grade = {};
 
