@@ -35,7 +35,6 @@ export default class ProgressYearTabs extends React.Component {
             for(var semester in yearsSemesters) // For each semester in the year
             {
                 if ([yearsSemesters[semester]] in this.devidedCourses) {
-                    console.log(this.devidedCourses[yearsSemesters[semester]]);
                     // Combine the semesters courses with the courses that are already in the array
                     coursesForYear = coursesForYear.concat(this.devidedCourses[yearsSemesters[semester]]);
                 }
@@ -45,7 +44,7 @@ export default class ProgressYearTabs extends React.Component {
             if (coursesForYear.length > 0) {
                 var row = // Define the year tab
                     <Tab eventKey={'year_'+i} key={'year_'+i} title={"Jaar " + i}>
-                        <ProgressYearTabContent semesters={yearsSemesters} courses={coursesForYear} />
+                        <ProgressYearTabContent year={i} semesters={yearsSemesters} courses={coursesForYear} />
                     </Tab>;
                 yearTabs.push(row); // Push the year tab onto the array
             }
