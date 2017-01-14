@@ -1,6 +1,7 @@
 import React from 'react';
 import Tabs from 'react-bootstrap/lib/Tabs';
 import Tab from 'react-bootstrap/lib/Tab';
+import CourseTable from './CourseTable';
 
 
 export default class ProgressYearTabContent extends React.Component {
@@ -39,7 +40,7 @@ export default class ProgressYearTabContent extends React.Component {
         for(var semester in coursesPerSemester) { // For reach semester
             var tab = // Define the tab
                 <Tab eventKey={'semester_' + semester} key={'semester_' + semester} title={'Semester ' + semester}>
-                    Content!
+                    <CourseTable courses={coursesPerSemester[semester]}/>
                 </Tab>
 
             tabs.push(tab); // Push the tab onto the array
