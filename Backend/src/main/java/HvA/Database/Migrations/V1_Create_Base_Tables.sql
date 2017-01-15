@@ -172,6 +172,21 @@ CREATE TABLE IF NOT EXISTS `sis`.`course_teacher` (
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `sis`.`study_plan` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` INT UNSIGNED NOT NULL,
+  `choice_1` ENUM('internship', 'theme', 'minor') NOT NULL,
+  `choice_2` ENUM('internship', 'theme', 'minor') NOT NULL,
+  `choice_3` ENUM('internship', 'theme', 'minor') NOT NULL,
+  `accepted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`, `user_id`),
+  CONSTRAINT `fk_study_plan_users`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `sis`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
 DROP TABLE IF EXISTS `sis`.`auth_tokens` ;
 
 CREATE TABLE IF NOT EXISTS `sis`.`auth_tokens` (

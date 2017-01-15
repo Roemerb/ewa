@@ -1,10 +1,7 @@
 package HvA.Controllers;
 
 import HvA.dao.UserDao;
-import HvA.model.Grade;
-import HvA.model.Group;
-import HvA.model.Study_Program;
-import HvA.model.User;
+import HvA.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -99,4 +96,22 @@ public class UserController
 
         return user.getGrades();
     }
+
+    @RequestMapping(value = "/user/{id}/planning")
+    public Set<Study_Plan> getUserStudyPlan(@PathVariable("id") int id)
+    {
+        User user = null;
+        try
+        {
+            user = dao.getUser(id);
+        }
+        catch(NoResultException ex)
+        {
+            user = new User();
+        }
+
+        return user.getStudyplan();
+    }
+
+
 }
