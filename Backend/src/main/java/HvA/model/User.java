@@ -58,6 +58,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Grade> grades;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Study_Plan> studyplan;
+
 
     public User()
     {
@@ -178,5 +182,10 @@ public class User {
     public Set<Grade> getGrades()
     {
         return grades;
+    }
+
+    public Set<Study_Plan> getStudyplan()
+    {
+        return studyplan;
     }
 }
