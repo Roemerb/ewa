@@ -29,9 +29,9 @@ import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
 import RegisterGradePage from './components/pages/RegisterGrade'
 import NotificationsPage from './components/pages/Notifications'
-<<<<<<< HEAD
+
 import RetakesPage from './components/pages/Retakes'
-=======
+
 import ProgressPage from './components/pages/Progress';
 
 // ---------------------
@@ -43,7 +43,7 @@ import UserStore from './stores/UserStore';
 // Actions
 // ---------------------
 import * as UserActions from './actions/UserActions';
->>>>>>> 6ae6b294741f52eaa76c3007820a6799aaf85d56
+
 
 const initialState = {};
 

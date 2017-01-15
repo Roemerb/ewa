@@ -2,6 +2,7 @@ package HvA.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -38,6 +39,10 @@ public class Course
     @ManyToOne
     @JoinColumn(name = "study_program_id")
     private Study_Program study_program;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "course")
+    private Set<Course_Teacher> course_teacher;
 
     public Set<Exam> getExams()
     {
@@ -116,5 +121,10 @@ public class Course
     public void setType(String type)
     {
         this.type = type;
+    }
+
+    public Set<Course_Teacher> getCourseTeacher()
+    {
+        return course_teacher;
     }
 }
