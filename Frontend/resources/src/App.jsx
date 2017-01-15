@@ -30,6 +30,9 @@ import LoginPage from './components/pages/Login'
 import RegisterGradePage from './components/pages/RegisterGrade'
 import NotificationsPage from './components/pages/Notifications'
 
+import ProgressPage from './components/pages/Progress';
+
+
 // Stores
 
 import UserStore from './stores/UserStore';
@@ -38,6 +41,7 @@ import UserStore from './stores/UserStore';
 // Actions
 // ---------------------
 import * as UserActions from './actions/UserActions';
+
 
 const initialState = {};
 

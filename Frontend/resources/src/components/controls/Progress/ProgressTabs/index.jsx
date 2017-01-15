@@ -1,1 +1,1 @@
-export default from './ProgressTabs';
+export default from './ProgressYearTabs';
