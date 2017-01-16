@@ -16,10 +16,16 @@ export default React.createClass ({
         fetch('http://localhost:8080/course/' + this.props.course.id + '/exams').then((examResp) => {
             examResp.json().then((examData) => {
                 this.exams = examData;
+                fetch('http://localhost:8080/user/1/grades').then((gradeResponse) => {
+                    console.log(gradeResponse);
+                    gradeResponse.json().then((gradeData) => {
+                        this.grades = gradeData;
 
-                this.setState({
-                    examsLoaded: true,
-                    modalOpen: false
+                        this.setState({
+                            examsLoaded: true,
+                            modalOpen: false
+                        });
+                    });
                 });
             });
         });
@@ -49,7 +55,7 @@ export default React.createClass ({
                             <Modal.Title>{this.props.course.name}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            <DetailModalContent course={this.props.course} exams={this.exams}/>
+                            <DetailModalContent course={this.props.course} exams={this.exams} grades={this.grades}/>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal}>Sluiten</Button>

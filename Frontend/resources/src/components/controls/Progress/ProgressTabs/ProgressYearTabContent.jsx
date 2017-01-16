@@ -41,7 +41,7 @@ export default class ProgressYearTabContent extends React.Component {
             var tab = // Define the tab
                 <Tab eventKey={'semester_' + semester} key={'semester_' + semester} title={'Semester ' + semester}>
                     <CourseTable courses={coursesPerSemester[semester]}/>
-                </Tab>
+                </Tab>;
 
             tabs.push(tab); // Push the tab onto the array
         }

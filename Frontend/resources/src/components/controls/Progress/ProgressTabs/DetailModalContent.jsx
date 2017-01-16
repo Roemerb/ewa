@@ -12,6 +12,7 @@ export default class DetailModalContent extends React.Component {
         super(props);
 
         this.parseCourse();
+        console.log(this.props);
     }
 
     parseCourse() {
@@ -19,7 +20,22 @@ export default class DetailModalContent extends React.Component {
         this.course.semester = this.props.course.semester;
         this.course.name = this.props.course.name;
         this.course.ects = this.props.course.ects;
-        this.course.passed = <span style={{color:'green'}}>Ja</span>;
+
+        var passed = false;
+        for(var grade in this.props.grades) {
+            var obj = this.props.grades[grade];
+
+            if (obj.passed) {
+                passed = true;
+            }
+        }
+
+        if (passed == true) {
+            this.course.passed = <span style={{color:'green'}}>Ja</span>;
+        }
+        else {
+            this.course.passed = <span style={{color:'red'}}>NEE</span>;
+        }
 
         switch(this.props.course.type) { // Parse the course type
             case 'project':
