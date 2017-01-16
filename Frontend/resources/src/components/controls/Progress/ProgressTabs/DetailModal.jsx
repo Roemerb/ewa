@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/lib/Button'
 import Modal from 'react-bootstrap/lib/Modal'
+import DetailModalContent from './DetailModalContent';
 
 export default React.createClass ({
 
@@ -48,7 +49,7 @@ export default React.createClass ({
                             <Modal.Title>{this.props.course.name}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
-                            Modal for {this.props.course.name}
+                            <DetailModalContent course={this.props.course} exams={this.exams}/>
                         </Modal.Body>
                         <Modal.Footer>
                             <Button onClick={this.closeModal}>Sluiten</Button>
