@@ -39,7 +39,7 @@ export default class CourseTable extends React.Component {
                     <td>{courseObject.name}</td>
                     <td>{courseObject.ects}</td>
                     <td>{type}</td>
-                    <td><DetailModal/></td>
+                    <td><DetailModal course={courseObject}/></td>
                 </tr>
 
             rows.push(row);
@@ -61,7 +61,7 @@ export default class CourseTable extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.renderTableRows()}
+                    {this.renderTableRows()}
                 </tbody>
             </Table>
         )
