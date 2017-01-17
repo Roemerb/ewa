@@ -14,7 +14,8 @@ import java.util.Set;
 @Table(name = "users")
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name = "User.find", query="SELECT u FROM User u WHERE id = :id")
+    @NamedQuery(name = "User.find", query="SELECT u FROM User u WHERE id = :id"),
+    @NamedQuery(name = "Teacher.findAll", query = "SELECT u FROM User u INNER JOIN Group g ON u.group.id = g.id INNER JOIN Course c ON g.study_program.id = c.id WHERE c.id IN (SELECT course.id FROM Course_Teacher WHERE teacher_id = :id)")
 })
 
 public class User {
