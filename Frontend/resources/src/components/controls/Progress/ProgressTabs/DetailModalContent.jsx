@@ -75,9 +75,53 @@ export default class DetailModalContent extends React.Component {
                     examType = 'Hertentamen';
             }
 
+            var grade = {};
+            for(var gradeId in this.props.grades) {
+                var gradeObject = this.props.grades[gradeId];
+                if (gradeObject.exam.id == examObject.id) {
+                    grade = gradeObject;
+                }
+            }
+
+            if (grade.grade !== undefined) {
+                var tableGrade = grade.grade;
+            }
+            else {
+                var tableGrade = '(Nog) niet gemaakt';
+            }
+
             var tab =
                 <Tab eventKey={'exam_' + examObject.id} key={'exam_' + examObject.id} title={examType}>
-                    {examType} op {date.getDay() + '-' + date.getMonth() + '-' +  date.getFullYear()} in {examObject.location}.
+                    <Table striped bordered condensed hover>
+                        <thead>
+                        <tr>
+                            <th>Eigenschap</th>
+                            <th>Data</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Type</td>
+                            <td>{examType}</td>
+                        </tr>
+                        <tr>
+                            <td>Cijfer</td>
+                            <td>{tableGrade}</td>
+                        </tr>
+                        <tr>
+                            <td>Datum</td>
+                            <td>{
+                                    date.getDay() + '-' + date.getMonth() + '-' + date.getFullYear() + ' om ' + date.getHours() +
+                                     ':' + date.getMinutes()
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Locatie</td>
+                            <td>{examObject.location}</td>
+                        </tr>
+                        </tbody>
+                    </Table>
                 </Tab>;
 
             tabs.push(tab);
