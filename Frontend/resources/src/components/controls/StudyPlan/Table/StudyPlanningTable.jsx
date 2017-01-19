@@ -8,6 +8,38 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Button from 'react-bootstrap/lib/Button';
 
 export default class StudyPlanningTable extends React.Component {
+grade ={};
+
+    constructor(props)
+    {
+        super(props);
+        this.parseGrade();
+        console.log(this.props);
+    }
+
+    parseGrade() {
+
+        this.grade.grade = this.props.grade;
+
+        if (this.props.passed == 1)
+        {
+            this.grade.passed = "Ja";
+        }
+        else {
+            this.grade.passed = "Nee";
+        }
+
+        switch(this.grade.gradeType)
+        {
+            case "PRACTICAL":
+                this.grade.type = "Praktisch";
+                break;
+            case "REGULAR":
+            default:
+                this.grade.type = "Schriftelijk";
+                break;
+        }
+    }
 
     render() {
         function FieldGroup({ id, label, help, ...props }) {
@@ -23,7 +55,7 @@ export default class StudyPlanningTable extends React.Component {
             <div>
             <form>
                 <FormGroup controlId="formControlsSelect">
-                    <ControlLabel>Semester 1 t/m 3</ControlLabel>
+                    <ControlLabel>{this.grade.passed}</ControlLabel>
                     <FormControl disabled componentClass="select" placeholder="select">
                         <option value="select">Basisfase</option>
                     </FormControl>
@@ -53,11 +85,11 @@ export default class StudyPlanningTable extends React.Component {
                         label="Semester 6"
                         placeholder="Jouw Minor keuze"
                     />
-                    <ControlLabel>Semester 1 t/m 3</ControlLabel>
+                    <ControlLabel>Semester 7</ControlLabel>
                     <FormControl disabled componentClass="select" placeholder="select">
                         <option value="select">Richting Specifieke Themasemester</option>
                     </FormControl>
-                    <ControlLabel>Semester 1 t/m 3</ControlLabel>
+                    <ControlLabel>Semester 8</ControlLabel>
                     <FormControl disabled componentClass="select" placeholder="select">
                         <option value="select">AfstudeerFase</option>
                     </FormControl>

@@ -29,6 +29,7 @@ import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
 import RegisterGradePage from './components/pages/RegisterGrade'
 import NotificationsPage from './components/pages/Notifications'
+import StudyPlanningPage from './components/pages/StudyPlanning'
 
 import RetakesPage from './components/pages/Retakes'
 
@@ -92,6 +93,7 @@ export default class App extends Component {
                             <Route path ='/registergrade' component={RegisterGradePage} />
                             <Route path='/notifications' component={NotificationsPage} />
                             <Route path='/retakes' component={RetakesPage} />
+                            <Route path="/studyplanning" component={StudyPlanningPage} />
                         </Route>
 
                         <Route path='/login' component={LoginPage} />
