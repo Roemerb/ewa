@@ -8,10 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-/**
- * Project: Backend,
- * Created by Kadir Basturk on 11-10-2016.
- */
 @Repository
 public class UserDao {
 
