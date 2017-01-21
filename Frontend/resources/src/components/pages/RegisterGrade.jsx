@@ -35,15 +35,15 @@ export default React.createClass ({
 
             this.state.programs.map((program) => {
                 var option =
-                    <option value={program.id} key={program.id}>{program.name}</option>
+                    <option value={program.id} key={program.id}>{program.name}</option>;
 
                 options.push(option);
             });
 
             return (
                 <FormGroup controlId="formControlsSelect">
-                    <ControlLabel>Select</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
+                    <ControlLabel>Studie</ControlLabel>
+                    <FormControl componentClass="select" placeholder="select" onChange={this.handleStudySelectorChange}>
                         <option>Selecteer een studie</option>
                         {options}
                     </FormControl>
@@ -53,13 +53,71 @@ export default React.createClass ({
         else {
             return (
                 <FormGroup controlId="formControlsSelect">
-                    <ControlLabel>Select</ControlLabel>
+                    <ControlLabel>Studie</ControlLabel>
                     <FormControl componentClass="select" placeholder="select" disabled>
                         <option value="">Laden...</option>
                     </FormControl>
                 </FormGroup>
             );
         }
+    },
+
+    renderGroupSelector() {
+        console.log(this.state);
+        if (this.state.groupsLoaded) {
+
+            var options = [];
+
+            this.state.groups.map((group) => {
+                var option =
+                    <option value={group.id} key={group.id}>{this.state.selectedProgram.groupPrefix + group.id}</option>;
+
+                options.push(option);
+            });
+
+            return (
+                <FormGroup controlId="formControlsSelect">
+                    <ControlLabel>Groep/Klas</ControlLabel>
+                    <FormControl componentClass="select" placeholder="select">
+                        <option>Selecteer een groep</option>
+                        {options}
+                    </FormControl>
+                </FormGroup>
+            );
+        }
+        else {
+            return (
+                <FormGroup controlId="formControlsSelect">
+                    <ControlLabel>Groep/Klas</ControlLabel>
+                    <FormControl componentClass="select" placeholder="select" disabled>
+                        <option value="">Selecteer eerst een studie</option>
+                    </FormControl>
+                </FormGroup>
+            );
+        }
+    },
+
+    handleStudySelectorChange(event) {
+        event.persist();
+        fetch('http://localhost:8080/studyprogram/' + event.target.value + '/groups').then((response) => {
+            response.json().then((data) => {
+                var programData = this.state.programs;
+                var selectedProgram;
+                programData.map((program) => {
+                    if (program.id == event.target.value) {
+                        selectedProgram = program;
+                    }
+                });
+                this.setState({
+                    programsLoaded: true,
+                    programs: programData,
+                    selectedProgram: selectedProgram,
+                    groupsLoaded: true,
+                    groups: data,
+                    usersLoaded: false
+                });
+            });
+        });
     },
 
     render () {
@@ -72,7 +130,7 @@ export default React.createClass ({
                         {this.renderProgramSelector()}
                     </Col>
                     <Col xs={6} md={4}>
-                        <p>Column 2</p>
+                        {this.renderGroupSelector()}
                     </Col>
                     <Col xs={6} md={4}>
                         <p>Column 3</p>
