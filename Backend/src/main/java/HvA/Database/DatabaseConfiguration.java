@@ -14,6 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Project: Backend,
@@ -43,6 +44,7 @@ public class DatabaseConfiguration {
         factory.setDataSource(dataSource());
         factory.setPackagesToScan("HvA.model");
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factory.setJpaProperties(properties());
         factory.setPersistenceUnitName("sis");
         return factory;
     }
@@ -53,5 +55,11 @@ public class DatabaseConfiguration {
         jpaTransactionManager.setDataSource(dataSource());
         jpaTransactionManager.setEntityManagerFactory(entityManager().getObject());
         return jpaTransactionManager;
+    }
+
+    public Properties properties() {
+        Properties properties = new Properties();
+        properties.put("hibernate.show_sql", true);
+        return properties;
     }
 }
