@@ -11,7 +11,8 @@ export default React.createClass ({
         return {
             programsLoaded: false,
             groupsLoaded: false,
-            usersLoaded: false
+            usersLoaded: false,
+            coursesLoaded: false
         }
     },
 
@@ -22,7 +23,8 @@ export default React.createClass ({
                     programsLoaded: true,
                     programs: data,
                     groupsLoaded: false,
-                    usersLoaded: false
+                    usersLoaded: false,
+                    coursesLoaded: false
                 });
             });
         });
@@ -63,7 +65,6 @@ export default React.createClass ({
     },
 
     renderGroupSelector() {
-        console.log(this.state);
         if (this.state.groupsLoaded) {
 
             var options = [];
@@ -97,6 +98,40 @@ export default React.createClass ({
         }
     },
 
+    renderCourseSelector() {
+        if (this.state.coursesLoaded) {
+
+            var options = [];
+
+            this.state.courses.map((course) => {
+                var option =
+                    <option value={course.id} key={course.id}>{course.name}</option>;
+
+                options.push(option);
+            });
+
+            return (
+                <FormGroup controlId="formControlsSelect">
+                    <ControlLabel>Vak</ControlLabel>
+                    <FormControl componentClass="select" placeholder="select">
+                        <option>Selecteer een groep</option>
+                        {options}
+                    </FormControl>
+                </FormGroup>
+            );
+        }
+        else {
+            return (
+                <FormGroup controlId="formControlsSelect">
+                    <ControlLabel>Vak</ControlLabel>
+                    <FormControl componentClass="select" placeholder="select" disabled>
+                        <option value="">Selecteer eerst een groep</option>
+                    </FormControl>
+                </FormGroup>
+            );
+        }
+    },
+
     handleStudySelectorChange(event) {
         event.persist();
         fetch('http://localhost:8080/studyprogram/' + event.target.value + '/groups').then((response) => {
@@ -114,7 +149,34 @@ export default React.createClass ({
                     selectedProgram: selectedProgram,
                     groupsLoaded: true,
                     groups: data,
-                    usersLoaded: false
+                    usersLoaded: false,
+                    coursesLoaded: false
+                });
+            });
+        });
+    },
+
+    handleGroupSelectorChange(event) {
+        event.persist();
+        fetch('http://localhost:8080/group/' + event.target.value).then((response) => {
+            response.json().then((data) => {
+                var groupData = this.state.groups;
+                var selectedGroup;
+                groupData.map((group) => {
+                    if (group.id == event.target.value) {
+                        selectedGroup = group;
+                    }
+                });
+                this.setState({
+                    programsLoaded: true,
+                    programs: programData,
+                    selectedProgram: selectedProgram,
+                    groupsLoaded: true,
+                    groups: data,
+                    selectedGroup: selectedGroup,
+                    usersLoaded: false,
+                    coursesLoaded: true,
+                    courses: data.courses
                 });
             });
         });
@@ -133,7 +195,7 @@ export default React.createClass ({
                         {this.renderGroupSelector()}
                     </Col>
                     <Col xs={6} md={4}>
-                        <p>Column 3</p>
+                        {this.renderCourseSelector()}
                     </Col>
                 </Panel>
             </div>
