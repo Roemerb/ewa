@@ -102,4 +102,5 @@ public class Grade {
     }
 
     public int getECTS() { return exam.getCourse().getECTS(); }
+
 }
