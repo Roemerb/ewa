@@ -7,7 +7,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "course_teacher")
-
 public class Course_Teacher {
 
 

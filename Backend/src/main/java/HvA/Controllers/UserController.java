@@ -113,5 +113,20 @@ public class UserController
         return user.getStudyplan();
     }
 
+    @RequestMapping(value = "/user/{id}/students")
+    public List<User> getUsersForTeacher(@PathVariable("id") int id)
+    {
+        User user = null;
+        try
+        {
+            user = dao.getUser(id);
+        }
+        catch(NoResultException ex)
+        {
+            user = new User();
+        }
+
+        return dao.getCourseUsers(id);
+    }
 
 }

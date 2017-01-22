@@ -43,6 +43,12 @@ export default class NavBar extends React.Component {
                                 </a>
                             </li>
                             <li>
+                                <a href="/registergrade">
+                                    Cijfer registreren
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
+                                </a>
+                            </li>
+                            <li>
                                 <a href="/requirements">
                                     Study Requirements
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
