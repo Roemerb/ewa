@@ -14,7 +14,8 @@ import java.util.Set;
 @Table(name = "users")
 @NamedQueries({
     @NamedQuery(name = "User.findAll", query="SELECT u FROM User u"),
-    @NamedQuery(name = "User.find", query="SELECT u FROM User u WHERE id = :id")
+    @NamedQuery(name = "User.find", query="SELECT u FROM User u WHERE id = :id"),
+    @NamedQuery(name = "Teacher.findAll", query = "SELECT u FROM User u INNER JOIN Group g ON u.group.id = g.id INNER JOIN Course c ON g.study_program.id = c.id WHERE c.id IN (SELECT course.id FROM Course_Teacher WHERE teacher_id = :id)")
 })
 
 public class User {
@@ -50,7 +51,6 @@ public class User {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "group_id")
     private Group group;
@@ -58,6 +58,10 @@ public class User {
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Grade> grades;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Study_Plan> studyplan;
 
 
     public User()
@@ -123,7 +127,6 @@ public class User {
         this.hvaId = hvaId;
     }
 
-
     public Date getDeletedAt() {
         return deletedAt;
     }
@@ -180,5 +183,10 @@ public class User {
     public Set<Grade> getGrades()
     {
         return grades;
+    }
+
+    public Set<Study_Plan> getStudyplan()
+    {
+        return studyplan;
     }
 }

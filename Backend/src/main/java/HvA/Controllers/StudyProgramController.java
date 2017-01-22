@@ -19,6 +19,14 @@ public class StudyProgramController
     @Autowired
     private StudyProgramDao dao;
 
+    @RequestMapping(value = "/studyprogram")
+    public List<Study_Program> getAllStudyPrograms()
+    {
+        List<Study_Program> studyPrograms = dao.getAllStudyPrograms();
+
+        return studyPrograms;
+    }
+
     @RequestMapping(value = "/studyprogram/{id}")
     public ResponseEntity<Study_Program> get(@PathVariable("id") int id)
     {
@@ -48,12 +56,6 @@ public class StudyProgramController
         }
 
         return study_program.getGroups();
-    }
-
-    @RequestMapping(value = "/studyprogram", method = RequestMethod.GET)
-    public List<Study_Program> getAllStudyPrograms()
-    {
-        return dao.getAllStudyPrograms();
     }
 
     @RequestMapping(value = "/studyprogram/create", method = RequestMethod.POST)

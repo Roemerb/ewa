@@ -6,7 +6,7 @@ import React from "react";
 export default class ProgressBar extends React.Component {
 
     render() {
-        const percentageBehaald = (this.props.behaald / this.props.vereist) * 100;
+        const percentageBehaald = (this.props.behaald / 60) * 100;
 
         const progressStyle = {
             width: percentageBehaald + '%'

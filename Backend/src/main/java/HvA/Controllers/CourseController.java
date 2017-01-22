@@ -1,6 +1,7 @@
 package HvA.Controllers;
 
 import HvA.model.Course;
+import HvA.model.Course_Teacher;
 import HvA.model.Exam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,5 +66,21 @@ public class CourseController
         dao.createCourse(course);
 
         return new ResponseEntity<Course>(course, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/course/{id}/teacher")
+    public Set<Course_Teacher> getCourseTeacher(@PathVariable("id") int id)
+    {
+        Course course = null;
+        try
+        {
+            course = dao.getCourse(id);
+        }
+        catch(NoResultException ex)
+        {
+            course = new Course();
+        }
+
+        return course.getCourseTeacher();
     }
 }

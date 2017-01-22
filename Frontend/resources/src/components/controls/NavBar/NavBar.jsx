@@ -3,8 +3,13 @@
  */
 
 import React from "react";
+import UserStore from '../../../stores/UserStore';
 
 export default class NavBar extends React.Component {
+
+    constructor() {
+        super();
+    }
 
     render() {
         return (
@@ -18,6 +23,9 @@ export default class NavBar extends React.Component {
                             <span className="icon-bar"></span>
                         </button>
                         <a className="navbar-brand" href="/">SIS</a>
+                        <p>
+
+                        </p>
                     </div>
 
                     <div className="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
@@ -32,6 +40,12 @@ export default class NavBar extends React.Component {
                                 <a href="/progress">
                                     Progress
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-dashboard"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/registergrade">
+                                    Cijfer registreren
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
                                 </a>
                             </li>
                             <li>
@@ -62,6 +76,12 @@ export default class NavBar extends React.Component {
                                 <a href="notifications">
                                     Notifications
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-envelope"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="retakes">
+                                    Herkansingen
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicon-align-center"></span>
                                 </a>
                             </li>
                         </ul>
