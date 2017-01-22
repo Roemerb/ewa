@@ -1,10 +1,12 @@
 package HvA.Controllers;
 
-
+import HvA.dao.ExamDao;
 import HvA.dao.GradeDao;
+import HvA.dao.UserDao;
 import HvA.model.Course;
 import HvA.model.Exam;
 import HvA.model.Grade;
+import HvA.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,12 @@ public class GradeController {
 
     @Autowired
     private GradeDao dao;
+
+    @Autowired
+    private UserDao userDao;
+
+    @Autowired
+    private ExamDao examDao;
 
     @RequestMapping(value = "/grade/{id}")
     public ResponseEntity<Grade> get(@PathVariable("id") int id) {
@@ -79,10 +87,31 @@ public class GradeController {
     }
 
     @RequestMapping(value = "/grade/create", method = RequestMethod.POST)
-    public ResponseEntity<Grade> createGrade(@RequestBody Grade grade)
+    public ResponseEntity<Grade> createGrade(
+            @RequestBody Grade grade,
+            @RequestParam("user_id") int userId,
+            @RequestParam("exam_id") int examId)
     {
-        dao.createGrade(grade);
 
-        return new ResponseEntity<Grade>(grade, HttpStatus.OK);
+        User user = null;
+        Exam exam = null;
+        try {
+            user = userDao.getUser(userId);
+            exam = examDao.getExam(examId);
+        }
+        catch(NoResultException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+
+        Grade newGrade = new Grade();
+        newGrade.setExam(exam);
+        newGrade.setUser(user);
+        newGrade.setGradeType(grade.getGradeType());
+        newGrade.setGrade(grade.getGrade());
+        newGrade.setPassed(grade.getPassed());
+
+        dao.createGrade(newGrade);
+        return new ResponseEntity<Grade>(newGrade, HttpStatus.OK);
     }
 }
