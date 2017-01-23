@@ -8,7 +8,8 @@ export default React.createClass ({
 
     getInitialState() {
         return {
-            planningLoaded: false
+            planningLoaded: false,
+            study_plan: [],
         }
     },
 
@@ -16,9 +17,9 @@ export default React.createClass ({
                 fetch('http://localhost:8080/user/1/planning').then((planningResponse) => {
                     console.log(planningResponse);
                     planningResponse.json().then((planningData) => {
-                        this.study_plan = planningData;
                         this.setState({
-                            planningLoaded: true
+                            study_plan: planningData,
+                            planningLoaded: true,
                         });
                 });
             });
@@ -26,10 +27,11 @@ export default React.createClass ({
 
 
     render() {
+        console.log(this.study_plan)
         if (this.state.planningLoaded == true) {
             return (
                 <div>
-                    <StudyPlanningTable planning={this.study_plan}/>
+                    <StudyPlanningTable planning={this.state.study_plan}/>
                 </div>
             );
         }else {

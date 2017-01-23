@@ -32,6 +32,7 @@ planning ={};
                 this.planning.choice_1 = "ThemaSemester";
                 break;
             case "internship":
+            default:
                 this.planning.choice_1 = "Stage";
                 break;
             case "minor":
@@ -40,6 +41,7 @@ planning ={};
         switch(this.props.choice_2)
         {
             case "theme":
+            default:
                 this.planning.choice_2 = "ThemaSemester";
                 break;
             case "internship":
@@ -57,7 +59,8 @@ planning ={};
                 this.planning.choice_3 = "Stage";
                 break;
             case "minor":
-                this.planning.choice_3 = "Minor";
+            default:
+                this.planning.choice_3 = "Gekozen minor";
         }
     }
 
@@ -83,7 +86,7 @@ planning ={};
                     </FormControl>
                     <ControlLabel>Semester 4</ControlLabel>
                     <FormControl componentClass="select" placeholder="select">
-                        <option value="select">{this.props.choice_1}</option>
+                        <option value="select">{this.planning.choice_1}</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
                         <option value="ThemaSemester">Big Data</option>
                         <option value="ThemaSemester">Creative Startups</option>
