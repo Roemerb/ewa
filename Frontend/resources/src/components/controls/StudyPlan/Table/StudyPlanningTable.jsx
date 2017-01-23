@@ -8,38 +8,60 @@ import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import Button from 'react-bootstrap/lib/Button';
 
 export default class StudyPlanningTable extends React.Component {
-grade ={};
+planning ={};
 
     constructor(props)
     {
         super(props);
-        this.parseGrade();
+        this.parsePlanning();
         console.log(this.props);
     }
 
-    parseGrade() {
+    parsePlanning() {
 
-        this.grade.grade = this.props.grade;
-
-        if (this.props.passed == 1)
+        if (this.props.accepted == "true")
         {
-            this.grade.passed = "Ja";
-        }
-        else {
-            this.grade.passed = "Nee";
+            this.planning.accepted = "Ja";
+        } else {
+            this.planning.accepted = "Nee";
         }
 
-        switch(this.grade.gradeType)
+        switch(this.props.choice_1)
         {
-            case "PRACTICAL":
-                this.grade.type = "Praktisch";
+            case "theme":
+                this.planning.choice_1 = "ThemaSemester";
                 break;
-            case "REGULAR":
-            default:
-                this.grade.type = "Schriftelijk";
+            case "internship":
+                this.planning.choice_1 = "Stage";
                 break;
+            case "minor":
+                this.planning.choice_1 = "Minor";
+        }
+        switch(this.props.choice_2)
+        {
+            case "theme":
+                this.planning.choice_2 = "ThemaSemester";
+                break;
+            case "internship":
+                this.planning.choice_2 = "Stage";
+                break;
+            case "minor":
+                this.planning.choice_2 = "Minor";
+        }
+        switch(this.props.choice_3)
+        {
+            case "theme":
+                this.planning.choice_3 = "ThemaSemester";
+                break;
+            case "internship":
+                this.planning.choice_3 = "Stage";
+                break;
+            case "minor":
+                this.planning.choice_3 = "Minor";
         }
     }
+
+
 
     render() {
         function FieldGroup({ id, label, help, ...props }) {
@@ -55,13 +77,13 @@ grade ={};
             <div>
             <form>
                 <FormGroup controlId="formControlsSelect">
-                    <ControlLabel>{this.grade.passed}</ControlLabel>
+                    <ControlLabel>Semester 1 t/m 3</ControlLabel>
                     <FormControl disabled componentClass="select" placeholder="select">
                         <option value="select">Basisfase</option>
                     </FormControl>
                     <ControlLabel>Semester 4</ControlLabel>
                     <FormControl componentClass="select" placeholder="select">
-                        <option value="select">Stage</option>
+                        <option value="select">{this.props.choice_1}</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
                         <option value="ThemaSemester">Big Data</option>
                         <option value="ThemaSemester">Creative Startups</option>
@@ -71,7 +93,7 @@ grade ={};
                     </FormControl>
                     <ControlLabel>Semester 5</ControlLabel>
                     <FormControl componentClass="select" placeholder="select">
-                        <option value="select">Stage</option>
+                        <option value="select">{this.planning.choice_2}</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
                         <option value="ThemaSemester">Big Data</option>
                         <option value="ThemaSemester">Creative Startups</option>
@@ -83,7 +105,7 @@ grade ={};
                         id="formControlsText"
                         type="text"
                         label="Semester 6"
-                        placeholder="Jouw Minor keuze"
+                        placeholder={this.planning.choice_3}
                     />
                     <ControlLabel>Semester 7</ControlLabel>
                     <FormControl disabled componentClass="select" placeholder="select">

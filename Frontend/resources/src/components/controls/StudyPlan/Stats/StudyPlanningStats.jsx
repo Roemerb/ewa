@@ -8,18 +8,17 @@ export default React.createClass ({
 
     getInitialState() {
         return {
-            gradesLoaded: false
+            planningLoaded: false
         }
     },
 
     componentDidMount() {
-                fetch('http://localhost:8080/user/1/grades').then((gradeResponse) => {
-                    console.log(gradeResponse);
-                    gradeResponse.json().then((gradeData) => {
-                        this.grades = gradeData;
+                fetch('http://localhost:8080/user/1/planning').then((planningResponse) => {
+                    console.log(planningResponse);
+                    planningResponse.json().then((planningData) => {
+                        this.study_plan = planningData;
                         this.setState({
-                            gradesLoaded: true,
-                            grades: gradeData
+                            planningLoaded: true
                         });
                 });
             });
@@ -27,15 +26,15 @@ export default React.createClass ({
 
 
     render() {
-        if (this.state.gradesLoaded == true) {
+        if (this.state.planningLoaded == true) {
             return (
                 <div>
-                    <StudyPlanningTable grades={this.state.grades}/>
+                    <StudyPlanningTable planning={this.study_plan}/>
                 </div>
             );
         }else {
             return (
-                <h2>Laden...</h2>
+                <h2>Fetching Study planning...</h2>
             );
         }
     }
