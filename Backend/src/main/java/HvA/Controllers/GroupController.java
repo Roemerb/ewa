@@ -17,9 +17,21 @@ import java.util.Set;
 @CrossOrigin
 public class GroupController
 {
+
+    /**
+     * We need the group repo for data
+     *
+     * @var GroupDao dao
+     */
     @Autowired
     private GroupDao dao;
 
+    /**
+     * Get a specific group
+     *
+     * @param int id
+     * @return
+     */
     @RequestMapping(value = "/group/{id}")
     public ResponseEntity<Group> get(@PathVariable("id") int id)
     {
@@ -36,12 +48,23 @@ public class GroupController
         return new ResponseEntity<Group>(group, HttpStatus.OK);
     }
 
+    /**
+     * Get all groups
+     *
+     * @return List<Group>
+     */
     @RequestMapping(value = "/group", method = RequestMethod.GET)
     public List<Group> getAllGroups()
     {
         return dao.getAllGroups();
     }
 
+    /**
+     * Get the study program for a specific group
+     *
+     * @param int id
+     * @return ResponseEntity<Group>
+     */
     @RequestMapping(value = "/group/{id}/program")
     public ResponseEntity<Study_Program> getProgramForGroup(@PathVariable("id") int id)
     {
@@ -58,6 +81,12 @@ public class GroupController
         return new ResponseEntity<Study_Program>(group.getStudy_program(), HttpStatus.OK);
     }
 
+    /**
+     * Get a list of users in a specific group
+     *
+     * @param int id
+     * @return Set<User>
+     */
     @RequestMapping(value = "/group/{id}/users")
     public Set<User> getUsersForGroup(@PathVariable("id") int id)
     {

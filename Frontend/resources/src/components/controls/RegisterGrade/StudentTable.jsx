@@ -26,7 +26,11 @@ export default class StudentTable extends React.Component {
                         </FormGroup>
                     </td>
                 </tr>
+
+            rows.push(row);
         }
+
+        return rows;
     }
 
     render() {

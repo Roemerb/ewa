@@ -133,6 +133,7 @@ export default React.createClass ({
     },
 
     renderStudentTable() {
+        console.log('table', this.state);
         if (this.state.usersLoaded) {
             return (
                 <Panel>
@@ -208,7 +209,7 @@ export default React.createClass ({
 
         var previousState = this.state;
         fetch('http://localhost:8080/group/' + previousState.selectedGroup.id + '/users').then((response) => {
-            response.json((data) => {
+            response.json().then((data) => {
                 var selectedCourse;
                 var courseData = previousState.courses;
 
@@ -217,6 +218,8 @@ export default React.createClass ({
                         selectedCourse = course;
                     }
                 });
+
+                console.log('shit gets here');
 
                 this.setState({
                     programsLoaded: true,

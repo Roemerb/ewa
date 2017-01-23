@@ -22,9 +22,20 @@ import java.util.Set;
 public class CourseController
 {
 
+    /**
+     * We need the course repo for data
+     *
+     * @var CourseDao dao
+     */
     @Autowired
     private CourseDao dao;
 
+    /**
+     * Get a course by it's ID
+     *
+     * @param id
+     * @return ResponseEntity<Course>
+     */
     @RequestMapping(value = "/course/{id}")
     public ResponseEntity<Course> get(@PathVariable("id") int id) {
 
@@ -39,12 +50,24 @@ public class CourseController
 
         return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
+
+    /**
+     * Get all courses
+     *
+     * @return List<Course>
+     */
     @RequestMapping(value = "/course", method = RequestMethod.GET)
     public List<Course> getAllCourses()
     {
         return dao.getAllCourses();
     }
 
+    /**
+     * Get the exams for a specific course
+     *
+     * @param int id
+     * @return Set<Exam>
+     */
     @RequestMapping(value="/course/{id}/exams")
     public Set<Exam> getExamsForCourses(@PathVariable("id") int id)
     {
@@ -60,6 +83,13 @@ public class CourseController
         return course.getExams();
     }
 
+
+    /**
+     * Create a new course
+     *
+     * @param Course
+     * @return Course
+     */
     @RequestMapping(value = "/course/create", method = RequestMethod.POST)
     public ResponseEntity<Course> createCourse(@RequestBody Course course)
     {
@@ -68,6 +98,12 @@ public class CourseController
         return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
 
+    /**
+     * Get the teacher for a specific course
+     *
+     * @param id
+     * @return User
+     */
     @RequestMapping(value = "/course/{id}/teacher")
     public Set<Course_Teacher> getCourseTeacher(@PathVariable("id") int id)
     {

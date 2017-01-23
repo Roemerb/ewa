@@ -16,9 +16,20 @@ import java.util.List;
 public class StudyPlanController
 {
 
+    /**
+     * We need the repo to retreive data
+     *
+     * @var StudyPlanDao dao
+     */
     @Autowired
     private StudyPlanDao dao;
 
+    /**
+     * Get a specific study program
+     *
+     * @param id
+     * @return ResponseEntity<Study_Plan>
+     */
     @RequestMapping(value = "/studyplan/{id}")
     public ResponseEntity<Study_Plan> get(@PathVariable("id") int id) {
 
@@ -33,6 +44,12 @@ public class StudyPlanController
 
         return new ResponseEntity<Study_Plan>(studyplan, HttpStatus.OK);
     }
+
+    /**
+     * Get all study plans
+     *
+     * @return List<Study_Plan>
+     */
     @RequestMapping(value = "/studyplan", method = RequestMethod.GET)
     public List<Study_Plan> getAllStudyPlan()
     {
@@ -40,6 +57,12 @@ public class StudyPlanController
     }
 
 
+    /**
+     * Create a new study plan
+     *
+     * @param Study_Plan studyplan
+     * @return ResponseEntity<Study_Plan>
+     */
     @RequestMapping(value = "/studyplan/create", method = RequestMethod.POST)
     public ResponseEntity<Study_Plan> createStudyPlan(@RequestBody Study_Plan studyplan)
     {
