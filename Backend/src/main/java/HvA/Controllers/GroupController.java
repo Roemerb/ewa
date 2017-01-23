@@ -3,6 +3,7 @@ package HvA.Controllers;
 import HvA.dao.GroupDao;
 import HvA.model.Group;
 import HvA.model.Study_Program;
+import HvA.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -54,5 +56,21 @@ public class GroupController
         }
 
         return new ResponseEntity<Study_Program>(group.getStudy_program(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/group/{id}/users")
+    public Set<User> getUsersForGroup(@PathVariable("id") int id)
+    {
+        Group group = null;
+        try
+        {
+            group = dao.getGroup(id);
+        }
+        catch(NoResultException ex)
+        {
+            group = new Group();
+        }
+
+        return group.getUsers();
     }
 }

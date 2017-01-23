@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/lib/Col';
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel'
+import StudentTable from '../controls/RegisterGrade/StudentTable';
 
 export default React.createClass ({
 
@@ -79,7 +80,7 @@ export default React.createClass ({
             return (
                 <FormGroup controlId="formControlsSelect">
                     <ControlLabel>Groep/Klas</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
+                    <FormControl componentClass="select" placeholder="select" onChange={this.handleGroupSelectorChange}>
                         <option>Selecteer een groep</option>
                         {options}
                     </FormControl>
@@ -100,7 +101,6 @@ export default React.createClass ({
 
     renderCourseSelector() {
         if (this.state.coursesLoaded) {
-
             var options = [];
 
             this.state.courses.map((course) => {
@@ -113,8 +113,8 @@ export default React.createClass ({
             return (
                 <FormGroup controlId="formControlsSelect">
                     <ControlLabel>Vak</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
-                        <option>Selecteer een groep</option>
+                    <FormControl componentClass="select" placeholder="select" onChange={this.handleCourseSelectorChange}>
+                        <option>Selecteer een vak</option>
                         {options}
                     </FormControl>
                 </FormGroup>
@@ -129,6 +129,23 @@ export default React.createClass ({
                     </FormControl>
                 </FormGroup>
             );
+        }
+    },
+
+    renderStudentTable() {
+        if (this.state.usersLoaded) {
+            return (
+                <Panel>
+                    <StudentTable users={this.state.users}/>
+                </Panel>
+            );
+        }
+        else {
+            return (
+                <Panel>
+
+                </Panel>
+            )
         }
     },
 
@@ -161,7 +178,11 @@ export default React.createClass ({
         fetch('http://localhost:8080/group/' + event.target.value).then((response) => {
             response.json().then((data) => {
                 var groupData = this.state.groups;
+                var programData = this.state.programs;
+                var selectedProgram = this.state.selectedProgram;
+
                 var selectedGroup;
+
                 groupData.map((group) => {
                     if (group.id == event.target.value) {
                         selectedGroup = group;
@@ -172,15 +193,49 @@ export default React.createClass ({
                     programs: programData,
                     selectedProgram: selectedProgram,
                     groupsLoaded: true,
-                    groups: data,
+                    groups: groupData,
                     selectedGroup: selectedGroup,
                     usersLoaded: false,
                     coursesLoaded: true,
-                    courses: data.courses
+                    courses: data.study_program.courses
                 });
             });
         });
     },
+
+    handleCourseSelectorChange(event) {
+        event.persist();
+
+        var previousState = this.state;
+        fetch('http://localhost:8080/group/' + previousState.selectedGroup.id + '/users').then((response) => {
+            response.json((data) => {
+                var selectedCourse;
+                var courseData = previousState.courses;
+
+                courseData.map((course) => {
+                    if (course.id == event.target.value) {
+                        selectedCourse = course;
+                    }
+                });
+
+                this.setState({
+                    programsLoaded: true,
+                    programs: previousState.programs,
+                    selectedProgram: previousState.selectedProgram,
+                    groupsLoaded: true,
+                    groups: previousState.groupData,
+                    selectedGroup: previousState.selectedGroup,
+                    usersLoaded: true,
+                    users: data,
+                    coursesLoaded: true,
+                    courses: previousState.courses,
+                    selectedCourse: selectedCourse
+                });
+            });
+        });
+    },
+
+
 
     render () {
         return (
@@ -198,6 +253,7 @@ export default React.createClass ({
                         {this.renderCourseSelector()}
                     </Col>
                 </Panel>
+                {this.renderStudentTable()}
             </div>
         )
     }
