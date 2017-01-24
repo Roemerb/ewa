@@ -5,6 +5,8 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import FormControl from 'react-bootstrap/lib/FormControl';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel'
 import StudentTable from '../controls/RegisterGrade/StudentTable';
+import Button from 'react-bootstrap/lib/Button';
+import Table from 'react-bootstrap/lib/Table';
 
 export default React.createClass ({
 
@@ -132,22 +134,116 @@ export default React.createClass ({
         }
     },
 
+    renderExamsTable() {
+
+        if (this.state.examsLoaded) {
+            return (
+                <Table striped bordered condensed hover>
+                    <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Locatie</th>
+                        <th>Datum</th>
+                        <th>Kies</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {this.renderExamTableRows()}
+                    </tbody>
+                </Table>
+            )
+        }
+        else {
+            return (
+                <div></div>
+            );
+        }
+    },
+
+    renderExamTableRows() {
+        var rows = [];
+
+        this.state.exams.map((exam) => {
+
+            var date = new Date(exam.dateAndTime);
+            var dateParsed = date.getDay() + '-' + date.getMonth() + '-' + date.getFullYear() + ' om ' + date.getHours() +
+                ':' + date.getMinutes();
+            var examType;
+
+            switch(exam.type) {
+                case 'regular':
+                case 'REGULAR':
+                    examType = 'Tentamen';
+                    break;
+                default:
+                    examType = 'Hertentamen';
+            }
+
+            var row =
+                <tr>
+                    <td>{examType}</td>
+                    <td>{exam.location}</td>
+                    <td>{dateParsed}</td>
+                    <td><Button bsType="success" onClick={this.handleChooseExamButton(exam.id)}>Kies</Button></td>
+                </tr>
+
+            rows.push(row);
+        });
+
+        return rows;
+    },
+
     renderStudentTable() {
-        console.log('table', this.state);
         if (this.state.usersLoaded) {
             return (
-                <Panel>
-                    <StudentTable users={this.state.users}/>
-                </Panel>
+                <div>
+                    <Panel>
+                        <StudentTable users={this.state.users}/>
+                    </Panel>
+                </div>
             );
         }
         else {
             return (
-                <Panel>
+                <div>
 
-                </Panel>
+                </div>
             )
         }
+    },
+
+    handleChooseExamButton(examId) {
+
+        var previousState = this.state;
+        var selectedExam;
+
+        for(var exam in this.state.exams) {
+            if (exam == examId) {
+                selectedExam = this.state.exams[exam];
+            }
+        }
+
+        fetch('http://localhost:8080/group/' + previousState.selectedGroup.id + '/users').then((response) => {
+            response.json().then((data) => {
+
+                this.setState({
+                    programsLoaded: true,
+                    programs: previousState.programs,
+                    selectedProgram: previousState.selectedProgram,
+                    groupsLoaded: true,
+                    groups: previousState.groups,
+                    selectedGroup: previousState.selectedGroup,
+                    usersLoaded: false,
+                    users: data,
+                    examsLoaded: true,
+                    exams: previousState.exams,
+                    selectedExam: selectedExam,
+                    coursesLoaded: true,
+                    courses: previousState.courses,
+                    selectedCourse: previousState.selectedCourse
+                });
+            });
+        });
     },
 
     handleStudySelectorChange(event) {
@@ -207,19 +303,16 @@ export default React.createClass ({
     handleCourseSelectorChange(event) {
         event.persist();
 
+        var selectedCourse;
+        this.state.courses.map((course) => {
+            if (course.id == event.target.value) {
+                selectedCourse = course;
+            }
+        });
+
         var previousState = this.state;
-        fetch('http://localhost:8080/group/' + previousState.selectedGroup.id + '/users').then((response) => {
+        fetch('http://localhost:8080/course/' + selectedCourse.id + '/exams').then((response) => {
             response.json().then((data) => {
-                var selectedCourse;
-                var courseData = previousState.courses;
-
-                courseData.map((course) => {
-                    if (course.id == event.target.value) {
-                        selectedCourse = course;
-                    }
-                });
-
-                console.log('shit gets here');
 
                 this.setState({
                     programsLoaded: true,
@@ -228,11 +321,11 @@ export default React.createClass ({
                     groupsLoaded: true,
                     groups: previousState.groups,
                     selectedGroup: previousState.selectedGroup,
-                    usersLoaded: true,
-                    users: data,
                     coursesLoaded: true,
                     courses: previousState.courses,
-                    selectedCourse: selectedCourse
+                    selectedCourse: selectedCourse,
+                    examsLoaded: true,
+                    exams: data
                 });
             });
         });
@@ -255,6 +348,7 @@ export default React.createClass ({
                     <Col xs={6} md={4}>
                         {this.renderCourseSelector()}
                     </Col>
+                    {this.renderExamsTable()}
                 </Panel>
                 {this.renderStudentTable()}
             </div>
