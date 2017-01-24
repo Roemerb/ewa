@@ -40,7 +40,7 @@ export default class CourseTable extends React.Component {
                     <td>{courseObject.ects}</td>
                     <td>{type}</td>
                     <td><DetailModal course={courseObject}/></td>
-                </tr>
+                </tr>;
 
             rows.push(row);
         }

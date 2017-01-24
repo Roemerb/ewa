@@ -15,9 +15,20 @@ import java.util.List;
 @CrossOrigin
 public class ExamController
 {
+
+    /**
+     * We need the course repo for data
+     *
+     * @var ExamDao dao
+     */
     @Autowired
     private ExamDao dao;
 
+    /**
+     * Get all exams
+     *
+     * @return List<Exam>
+     */
     @RequestMapping(value = "/exam")
     public List<Exam> getAllExams()
     {
@@ -26,6 +37,12 @@ public class ExamController
         return exams;
     }
 
+    /**
+     * Get a specific exam by it's ID
+     *
+     * @param int id
+     * @return ResponseEntity<Exam>
+     */
     @RequestMapping
     public ResponseEntity<Exam> get(@PathVariable("id") int id)
     {

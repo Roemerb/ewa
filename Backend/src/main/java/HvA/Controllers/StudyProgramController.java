@@ -16,9 +16,18 @@ import java.util.Set;
 @CrossOrigin
 public class StudyProgramController
 {
+
+    /**
+     * We need the repo to retreive data
+     */
     @Autowired
     private StudyProgramDao dao;
 
+    /**
+     * Get all study plans
+     *
+     * @return List<Study_Program>
+     */
     @RequestMapping(value = "/studyprogram")
     public List<Study_Program> getAllStudyPrograms()
     {
@@ -27,6 +36,12 @@ public class StudyProgramController
         return studyPrograms;
     }
 
+    /**
+     * Get a specific study program
+     *
+     * @param int id
+     * @return ResponseEntity<Study_Program>
+     */
     @RequestMapping(value = "/studyprogram/{id}")
     public ResponseEntity<Study_Program> get(@PathVariable("id") int id)
     {
@@ -43,6 +58,12 @@ public class StudyProgramController
         return new ResponseEntity<Study_Program>(study_program, HttpStatus.OK);
     }
 
+    /**
+     * Get the groups belonging to a study program
+     *
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/studyprogram/{id}/groups")
     public Set<Group> getGroupsForStudyProgram(@PathVariable("id") int id)
     {

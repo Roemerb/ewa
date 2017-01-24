@@ -14,28 +14,68 @@ import javax.persistence.*;
 })
 public class Grade {
 
+    /**
+     * The ID in the database. Identifying
+     *
+     * @var int id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    /**
+     * The type of the grade, can be PROJECT or REGULAR
+     *
+     * @var String gradeType
+     */
     @Column(name = "type")
     private String gradeType;
 
+    /**
+     * The actual grade
+     *
+     * @String grade
+     */
     @Column(name = "grade")
     private String grade;
 
+    /**
+     * A boolean stating if the user past the exam
+     *
+     * @var int passed
+     */
     @Column(name = "passed")
     private int passed;
 
+    /**
+     * The user that owns this grade. Foreign key joining user_id to a User
+     *
+     * @var User user
+     */
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    /**
+     * The exam in question. Foreign key joining exam_id to an Exam
+     *
+     * @var Exam exam
+     */
     @ManyToOne
     @JoinColumn(name = "exam_id")
     private Exam exam;
 
+    /**
+     * Constructor for grade
+     *
+     * @param id
+     * @param gradeType
+     * @param grade
+     * @param passed
+     * @param user
+     * @param exam
+     */
     public Grade(int id, String gradeType, String grade, int passed, User user, Exam exam)
     {
         setId(id);
@@ -46,8 +86,12 @@ public class Grade {
         setExam(exam);
     }
 
+    /**
+     * Empty contructor for Spring
+     */
     public Grade() {
     }
+
 
     public Exam getExam()
     {
