@@ -226,7 +226,7 @@ export default React.createClass ({
                     programs: previousState.programs,
                     selectedProgram: previousState.selectedProgram,
                     groupsLoaded: true,
-                    groups: previousState.groupData,
+                    groups: previousState.groups,
                     selectedGroup: previousState.selectedGroup,
                     usersLoaded: true,
                     users: data,

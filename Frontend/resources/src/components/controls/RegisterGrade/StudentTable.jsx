@@ -10,17 +10,17 @@ export default class StudentTable extends React.Component {
 
         for(var user in this.props.users)
         {
+            var userObj = this.props.users[user];
             var row =
-                <tr>
-                    <td>{user.firstName}</td>
-                    <td>{user.lastName}</td>
-                    <td>{user.email}</td>
-                    <td>{user.hvaId}</td>
-                    <td>{user.hvaId}</td>
+                <tr key={'userObj_' + userObj.id}>
+                    <td>{userObj.firstName}</td>
+                    <td>{userObj.lastName}</td>
+                    <td>{userObj.email}</td>
+                    <td>{userObj.hvaId}</td>
                     <td>
-                        <FormGroup controlId={'user_' + user.id}>
+                        <FormGroup controlId={'userObj_' + userObj.id}>
                             <FormControl
-                                controlId={'user_' + user.id}
+                                controlId={'userObj_' + userObj.id}
                                 type="text"
                             />
                         </FormGroup>
@@ -34,7 +34,6 @@ export default class StudentTable extends React.Component {
     }
 
     render() {
-        console.log('Hello!');
         return (
             <Table striped bordered condensed hover>
                 <thead>
