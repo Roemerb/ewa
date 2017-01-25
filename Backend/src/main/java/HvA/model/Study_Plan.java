@@ -31,7 +31,7 @@ public class Study_Plan
     private boolean accepted;
 
     @JsonIgnore
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
@@ -41,9 +41,9 @@ public class Study_Plan
     {
         setId(id);
         setUser(user_id);
-        setChoice_1(semester4);
-        setChoice_2(semester5);
-        setChoice_3(minor);
+        setSemester4(semester4);
+        setSemester5(semester5);
+        setMinor(minor);
     }
 
     public Study_Plan()
@@ -60,22 +60,12 @@ public class Study_Plan
 
     public String getSemester4() { return semester4;}
 
-    public void setChoice_1(String semester4) {this.semester4 = semester4; }
-
     public String getSemester5() {
         return semester5;
     }
 
-    public void setChoice_2(String semester5) {
-        this.semester5 = semester5;
-    }
-
     public String getMinor() {
         return minor;
-    }
-
-    public void setChoice_3(String minor) {
-        this.minor = minor;
     }
 
     public boolean isAccepted() {
@@ -92,5 +82,20 @@ public class Study_Plan
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setSemester4(String semester4)
+    {
+        this.semester4 = semester4;
+    }
+
+    public void setSemester5(String semester5)
+    {
+        this.semester5 = semester5;
+    }
+
+    public void setMinor(String minor)
+    {
+        this.minor = minor;
     }
 }

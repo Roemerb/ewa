@@ -175,9 +175,9 @@ CREATE TABLE IF NOT EXISTS `sis`.`course_teacher` (
 CREATE TABLE IF NOT EXISTS `sis`.`study_plan` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INT UNSIGNED NOT NULL,
-  `choice_1` ENUM('internship', 'theme', 'minor') NOT NULL,
-  `choice_2` ENUM('internship', 'theme', 'minor') NOT NULL,
-  `choice_3` ENUM('internship', 'theme', 'minor') NOT NULL,
+  `semester4` VARCHAR(255) NOT NULL,
+  `semester5` VARCHAR(255) NOT NULL,
+  `minor` VARCHAR(255) NOT NULL,
   `accepted` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`, `user_id`),
   CONSTRAINT `fk_study_plan_users`

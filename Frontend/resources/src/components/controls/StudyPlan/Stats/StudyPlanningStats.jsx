@@ -9,7 +9,6 @@ export default React.createClass ({
     getInitialState() {
         return {
             planningLoaded: false,
-            study_plan: [],
         }
     },
     /**
@@ -17,7 +16,6 @@ export default React.createClass ({
      */
     componentDidMount() {
                 fetch('http://localhost:8080/user/1/planning').then((planningResponse) => {
-                    console.log(planningResponse);
                     planningResponse.json().then((planningData) => {
                         this.setState({
                             study_plan: planningData,
