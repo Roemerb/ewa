@@ -22,9 +22,9 @@ planning ={};
      */
     parsePlanning() {
 
-        this.planning.semester4 == this.props.semester4;
-        this.planning.semester5 == this.props.semester5;
-        this.planning.minor == this.props.minor;
+        this.planning.semester4 = this.props.semester4;
+        this.planning.semester5 = this.props.semester5;
+        this.planning.minor = this.props.minor;
 
         if (this.props.accepted == "true")
         {
@@ -55,31 +55,32 @@ planning ={};
                         <option value="select">Basisfase</option>
                     </FormControl>
                     <ControlLabel>Semester 4</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
+                    <FormControl id="semester4" value={this.props.planning.semester4} componentClass="select" placeholder="select">
                         <option value="select">{this.planning.semester4}</option>
-                        <option value="Stage">Stage</option>
+                        <option value="internship">Stage</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
-                        <option value="ThemaSemester">Big Data</option>
-                        <option value="ThemaSemester">Creative Startups</option>
-                        <option value="ThemaSemester">Internet of Things</option>
-                        <option value="ThemaSemester">Mobile Development</option>
-                        <option value="ThemaSemester">Security</option>
+                        <option value="ts_big_data">Big Data</option>
+                        <option value="ts_creative_startup">Creative Startups</option>
+                        <option value="ts_internet_of_things">Internet of Things</option>
+                        <option value="ts_mobile_development">Mobile Development</option>
+                        <option value="ts_security">Security</option>
                     </FormControl>
                     <ControlLabel>Semester 5</ControlLabel>
-                    <FormControl componentClass="select" placeholder="select">
+                    <FormControl id="semester5" value={this.props.planning.semester5} componentClass="select" placeholder="select">
                         <option value="select">{this.planning.semester5}</option>
-                        <option value="Stage">Stage</option>
+                        <option value="internship">Stage</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
-                        <option value="ThemaSemester">Big Data</option>
-                        <option value="ThemaSemester">Creative Startups</option>
-                        <option value="ThemaSemester">Internet of Things</option>
-                        <option value="ThemaSemester">Mobile Development</option>
-                        <option value="ThemaSemester">Security</option>
+                        <option value="ts_big_data">Big Data</option>
+                        <option value="ts_creative_startup">Creative Startups</option>
+                        <option value="ts_internet_of_things">Internet of Things</option>
+                        <option value="ts_mobile_development">Mobile Development</option>
+                        <option value="ts_security">Security</option>
                     </FormControl>
                     <FieldGroup
-                        id="formControlsText"
+                        id="minor"
                         type="text"
                         label="Semester 6"
+                        value={this.props.planning.minor}
                         placeholder={this.planning.minor}
                     />
                     <ControlLabel>Semester 7</ControlLabel>
@@ -92,9 +93,7 @@ planning ={};
                     </FormControl>
                 </FormGroup>
 
-                <Button type="submit">
-                    Update StudyPlanning
-                </Button>
+                <Button bsStyle="success" onClick={this.saveStuddyPlanning}>Update StudyPlanning</Button>
 
             </form>
             </div>

@@ -31,7 +31,7 @@ public class Study_Plan
     private boolean accepted;
 
     @JsonIgnore
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 

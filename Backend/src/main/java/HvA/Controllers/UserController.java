@@ -98,7 +98,7 @@ public class UserController
     }
 
     @RequestMapping(value = "/user/{id}/planning")
-    public Set<Study_Plan> getUserStudyPlan(@PathVariable("id") int id)
+    public Study_Plan getUserStudyPlan(@PathVariable("id") int id)
     {
         User user = null;
         try

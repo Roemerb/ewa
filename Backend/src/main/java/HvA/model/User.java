@@ -59,8 +59,8 @@ public class User {
     private Set<Grade> grades;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private Set<Study_Plan> studyplan;
+    @OneToOne(mappedBy = "user")
+    private Study_Plan studyplan;
 
 
     public User()
@@ -184,7 +184,7 @@ public class User {
         return grades;
     }
 
-    public Set<Study_Plan> getStudyplan()
+    public Study_Plan getStudyplan()
     {
         return studyplan;
     }
