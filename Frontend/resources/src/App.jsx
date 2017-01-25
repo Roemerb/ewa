@@ -28,11 +28,9 @@ import HomePage from './components/pages/Home'
 import PageNotFound from './components/pages/404'
 import LoginPage from './components/pages/Login'
 import RegisterGradePage from './components/pages/RegisterGrade'
-import NotificationsPage from './components/pages/Notifications'
-
-import RetakesPage from './components/pages/Retakes'
 
 import ProgressPage from './components/pages/Progress';
+import ManagePrograms from './components/pages/ManagePrograms';
 
 // ---------------------
 // Stores
@@ -90,8 +88,7 @@ export default class App extends Component {
                             <IndexRoute component={HomePage} />
                             <Route path="/progress" component={ProgressPage} />
                             <Route path ='/registergrade' component={RegisterGradePage} />
-                            <Route path='/notifications' component={NotificationsPage} />
-                            <Route path='/retakes' component={RetakesPage} />
+                            <Route path ='/manageprograms' component={ManagePrograms} />
                         </Route>
 
                         <Route path='/login' component={LoginPage} />

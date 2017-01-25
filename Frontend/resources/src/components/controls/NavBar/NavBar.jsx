@@ -22,7 +22,7 @@ export default class NavBar extends React.Component {
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a className="navbar-brand" href="/">SIS</a>
+                        <a className="navbar-brand" href="/">Student</a>
                         <p>
 
                         </p>
@@ -42,21 +42,17 @@ export default class NavBar extends React.Component {
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-dashboard"></span>
                                 </a>
                             </li>
+                            <a className="navbar-brand" href="/">Docent</a>
                             <li>
                                 <a href="/registergrade">
                                     Cijfer registreren
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
                                 </a>
                             </li>
+                            <a className="navbar-brand" href="/">Manager</a>
                             <li>
-                                <a href="/requirements">
-                                    Study Requirements
-                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-newspaper"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Remedial
+                                <a href="/manageprograms">
+                                    Beheer Opleidingen
                                     <span  className="pull-right hidden-xs showopacity glyph-nav glyphicons-clock"></span>
                                 </a>
                             </li>
@@ -70,18 +66,6 @@ export default class NavBar extends React.Component {
                                 <a href="#">
                                     Profile
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-user"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="notifications">
-                                    Notifications
-                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-envelope"></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="retakes">
-                                    Herkansingen
-                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicon-align-center"></span>
                                 </a>
                             </li>
                         </ul>

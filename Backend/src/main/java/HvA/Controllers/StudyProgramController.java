@@ -1,6 +1,7 @@
 package HvA.Controllers;
 
 import HvA.dao.StudyProgramDao;
+import HvA.model.Course;
 import HvA.model.Group;
 import HvA.model.Study_Program;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,27 @@ public class StudyProgramController
         }
 
         return study_program.getGroups();
+    }
+
+    /**
+     * Get the groups belonging to a study program
+     *
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/studyprogram/{id}/courses")
+    public Set<Course> getCoursesForStudyProgram(@PathVariable("id") int id)
+    {
+        Study_Program study_program = null;
+        try
+        {
+            study_program = dao.getStudyProgram(id);
+        } catch(NoResultException ex)
+        {
+            study_program = new Study_Program();
+        }
+
+        return study_program.getCourses();
     }
 
     @RequestMapping(value = "/studyprogram/create", method = RequestMethod.POST)
