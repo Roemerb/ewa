@@ -119,4 +119,10 @@ public class CourseController
 
         return course.getCourseTeacher();
     }
+
+    @RequestMapping(value = "/course/{id}/delete", method = RequestMethod.DELETE)
+    public boolean deleteCourse(@PathVariable("id") int id)
+    {
+        return (dao.deleteCourse(id) == 1);
+    }
 }

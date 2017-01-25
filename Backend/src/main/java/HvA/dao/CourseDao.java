@@ -36,4 +36,10 @@ public class CourseDao
 
         return course;
     }
+
+    @Transactional
+    public int deleteCourse(int id)
+    {
+        return em.createQuery("DELETE Course c WHERE id = :id").setParameter("id", id).executeUpdate();
+    }
 }
