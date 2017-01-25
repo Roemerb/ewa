@@ -32,6 +32,22 @@ export default React.createClass ({
         });
     },
 
+    refreshCourses() {
+        var previousState = this.state;
+
+        fetch('http://localhost:8080/studyprogram/' + previousState.program.id + '/courses').then((response) => {
+            response.json().then((data) => {
+                this.setState({
+                    programsLoaded: previousState.programsLoaded,
+                    programs: previousState.programs,
+                    modalOpen: previousState.modalOpen,
+                    program: previousState.program,
+                    courses: data
+                });
+            })
+        });
+    },
+
     closeModal() {
         var previousState = this.state;
 
@@ -96,6 +112,8 @@ export default React.createClass ({
                         <FormGroup>
                             <FormControl id="ects" type="number" step="1" min="1" />
                         </FormGroup>
+
+                        <Button bsStyle="success">Opslaan</Button>
                     </form>
 
                     <Table striped bordered condensed hover >
@@ -125,7 +143,7 @@ export default React.createClass ({
             switch(course.type) { // Parse the course type
                 case 'project':
                 case 'PROJECT':
-                    vartype = 'Project';
+                    type = 'Project';
                     break;
                 case 'regular':
                 case 'REGULAR':
@@ -135,18 +153,28 @@ export default React.createClass ({
             }
 
             var row =
-                <tr>
+                <tr key={'course_' + course.id}>
                     <td>{course.semester}</td>
                     <td>{course.name}</td>
                     <td>{course.ects}</td>
                     <td>{type}</td>
-                    <td><Button bsStyle="danger">Verwijder</Button></td>
-                </tr>
+                    <td><Button bsStyle="danger" onClick={this.deleteCourse.bind(null, course)}>Verwijder</Button></td>
+                </tr>;
 
             rows.push(row);
         });
 
         return rows;
+    },
+
+    deleteCourse(course) {
+        if (confirm('Weet u zeker dat u dit vak wilt verwijderen?')) {
+            fetch('http://localhost:8080/course/' + course.id + '/delete', {
+                method: 'DELETE'
+            }).then((response) => {
+                this.refreshCourses();
+            });
+        }
     },
 
     render() {
@@ -189,7 +217,6 @@ export default React.createClass ({
                             <Button onClick={this.closeModal}>Sluiten</Button>
                         </Modal.Footer>
                     </Modal>
-
                 </div>
 
             )
