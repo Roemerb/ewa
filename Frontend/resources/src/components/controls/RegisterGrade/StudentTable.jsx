@@ -38,6 +38,17 @@ export default class StudentTable extends React.Component {
         return rows;
     }
 
+    parseExamType(type) {
+        switch(type) {
+            case 'regular':
+            case 'REGULAR':
+                return 'Tentamen';
+                break;
+            default:
+                return 'Hertentamen';
+        }
+    }
+
     submitGrades() {
         var grades = [];
 
@@ -52,6 +63,7 @@ export default class StudentTable extends React.Component {
     render() {
         return (
             <Panel>
+                <p>Cijfers voor het {this.parseExamType(this.props.exam.type)} van {this.props.course.name}</p>
                 <Table striped bordered condensed hover>
                     <thead>
                     <tr>

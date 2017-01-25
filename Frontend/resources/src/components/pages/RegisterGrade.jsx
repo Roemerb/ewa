@@ -180,11 +180,11 @@ export default React.createClass ({
             }
 
             var row =
-                <tr>
+                <tr key={'exam_' + exam.id}>
                     <td>{examType}</td>
                     <td>{exam.location}</td>
                     <td>{dateParsed}</td>
-                    <td><Button bsType="success" onClick={this.handleChooseExamButton(exam.id)}>Kies</Button></td>
+                    <td><Button bsStyle="success" onClick={this.handleChooseExamButton.bind(null, exam.id)}>Kies</Button></td>
                 </tr>
 
             rows.push(row);
@@ -198,7 +198,7 @@ export default React.createClass ({
             return (
                 <div>
                     <Panel>
-                        <StudentTable users={this.state.users}/>
+                        <StudentTable course={this.state.selectedCourse} exam={this.state.selectedExam} users={this.state.users}/>
                     </Panel>
                 </div>
             );
@@ -218,7 +218,8 @@ export default React.createClass ({
         var selectedExam;
 
         for(var exam in this.state.exams) {
-            if (exam == examId) {
+            var actualExam = this.state.exams[exam];
+            if (actualExam.id == examId) {
                 selectedExam = this.state.exams[exam];
             }
         }
@@ -233,7 +234,7 @@ export default React.createClass ({
                     groupsLoaded: true,
                     groups: previousState.groups,
                     selectedGroup: previousState.selectedGroup,
-                    usersLoaded: false,
+                    usersLoaded: true,
                     users: data,
                     examsLoaded: true,
                     exams: previousState.exams,
