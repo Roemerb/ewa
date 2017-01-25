@@ -113,6 +113,11 @@ export default React.createClass ({
                             <FormControl id="ects" type="number" step="1" min="1" />
                         </FormGroup>
 
+                        <ControlLabel>Aantal ECTS</ControlLabel>
+                        <FormGroup>
+                            <FormControl id="semester" type="number" step="1" min="1" max={this.state.program.durationYears * 2} />
+                        </FormGroup>
+
                         <Button bsStyle="success" onClick={this.saveCourse}>Opslaan</Button>
                     </form>
 
@@ -133,6 +138,28 @@ export default React.createClass ({
                 </div>
             )
         }
+    },
+
+    saveCourse() {
+        var name = $('#name').val();
+        var semester = $('#semester').val();
+        var type = $('#type').val();
+        var ects = $('#ects').val();
+
+        fetch('http://localhost:8080/course?program_id=' + this.state.program.id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                semester: semester,
+                type: type,
+                ects: ects
+            })
+        }).then((response) => {
+            this.refreshCourses();
+        })
     },
 
     renderCourseRows() {
