@@ -1,8 +1,10 @@
 package HvA.Controllers;
 
+import HvA.dao.StudyProgramDao;
 import HvA.model.Course;
 import HvA.model.Course_Teacher;
 import HvA.model.Exam;
+import HvA.model.Study_Program;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +31,9 @@ public class CourseController
      */
     @Autowired
     private CourseDao dao;
+
+    @Autowired
+    StudyProgramDao programDao;
 
     /**
      * Get a course by it's ID
@@ -90,12 +95,32 @@ public class CourseController
      * @param Course
      * @return Course
      */
-    @RequestMapping(value = "/course/create", method = RequestMethod.POST)
-    public ResponseEntity<Course> createCourse(@RequestBody Course course)
+    @RequestMapping(value = "/course", method = RequestMethod.POST)
+    public ResponseEntity<Course> createCourse(
+            @RequestBody Course course,
+            @RequestParam("program_id") int programId)
     {
-        dao.createCourse(course);
 
-        return new ResponseEntity<Course>(course, HttpStatus.OK);
+        Study_Program program = null;
+        try
+        {
+            program = programDao.getStudyProgram(programId);
+        }
+        catch(NoResultException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+
+        Course newCourse = new Course();
+        newCourse.setSemester(course.getSemester());
+        newCourse.setType(course.getType());
+        newCourse.setECTS(course.getECTS());
+        newCourse.setName(course.getName());
+        newCourse.setStudy_program(program);
+
+        dao.createCourse(newCourse);
+
+        return new ResponseEntity<Course>(newCourse, HttpStatus.OK);
     }
 
     /**

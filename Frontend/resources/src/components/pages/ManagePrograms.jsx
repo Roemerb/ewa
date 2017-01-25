@@ -113,7 +113,7 @@ export default React.createClass ({
                             <FormControl id="ects" type="number" step="1" min="1" />
                         </FormGroup>
 
-                        <Button bsStyle="success">Opslaan</Button>
+                        <Button bsStyle="success" onClick={this.saveCourse}>Opslaan</Button>
                     </form>
 
                     <Table striped bordered condensed hover >
