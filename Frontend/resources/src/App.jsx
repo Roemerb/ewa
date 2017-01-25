@@ -31,6 +31,7 @@ import RegisterGradePage from './components/pages/RegisterGrade'
 
 import ProgressPage from './components/pages/Progress';
 import ManagePrograms from './components/pages/ManagePrograms';
+import StudyPlanning from './components/pages/StudyPlanning';
 
 // ---------------------
 // Stores
@@ -89,6 +90,7 @@ export default class App extends Component {
                             <Route path="/progress" component={ProgressPage} />
                             <Route path ='/registergrade' component={RegisterGradePage} />
                             <Route path ='/manageprograms' component={ManagePrograms} />
+                            <Route path ='/studyplanning' component={StudyPlanning} />
                         </Route>
 
                         <Route path='/login' component={LoginPage} />

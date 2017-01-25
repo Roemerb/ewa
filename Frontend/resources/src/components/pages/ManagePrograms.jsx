@@ -69,6 +69,17 @@ export default React.createClass ({
         });
     },
 
+    refreshPrograms() {
+        fetch('http://localhost:8080/studyprogram').then((response) => {
+            response.json().then((data) => {
+                this.setState({
+                    programsLoaded: true,
+                    programs: data
+                });
+            });
+        });
+    },
+
     renderTableRows() {
         var rows = [];
 
@@ -78,6 +89,7 @@ export default React.createClass ({
                     <td>{program.name}</td>
                     <td>{program.durationYears}</td>
                     <td>{program.groupPrefix}</td>
+                    <td><Button bsStyle='danger' onClick={this.deleteProgram.bind(null, program)}>Verwijder</Button></td>
                     <td><Button bsStyle='success' onClick={this.openModal.bind(null, program)}>Bewerk</Button></td>
                 </tr>
 
@@ -162,6 +174,26 @@ export default React.createClass ({
         })
     },
 
+    saveProgram() {
+        var name = $('#name').val();
+        var groupPrefix = $('#groupPrefix').val();
+        var durationYears = $('#durationYears').val();
+
+        fetch('http://localhost:8080/studyprogram', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                groupPrefix: groupPrefix,
+                durationYears: durationYears
+            })
+        }).then((response) => {
+            this.refreshPrograms();
+        })
+    },
+
     renderCourseRows() {
         var rows = [];
 
@@ -204,6 +236,16 @@ export default React.createClass ({
         }
     },
 
+    deleteProgram(program) {
+        if (confirm('Weet u zeker dat u deze studie wilt verwijderen?')) {
+            fetch('http://localhost:8080/studyprogram/' + program.id + '/delete', {
+                method: 'DELETE'
+            }).then((response) => {
+                this.refreshPrograms();
+            })
+        }
+    },
+
     render() {
         if (this.state.programsLoaded) {
 
@@ -218,12 +260,31 @@ export default React.createClass ({
                 <div>
                     <h1>Beheer Studies</h1>
                     <Panel>
+
+                        <form>
+                            <h3>Maak een nieuwe Studie aan</h3>
+
+                            <ControlLabel>Naam</ControlLabel>
+                            <FormControl id="name" type="text" />
+
+                            <ControlLabel>Lengte in jaren</ControlLabel>
+                            <FormGroup>
+                                <FormControl id="durationYears" type="number" step="1" min="1" />
+                            </FormGroup>
+
+                            <ControlLabel>Groepen prefix</ControlLabel>
+                            <FormControl id="groupPrefix" type="text" />
+
+                            <Button bsStyle="success" onClick={this.saveProgram}>Opslaan</Button>
+                        </form>
+
                         <Table striped bordered condensed hover>
                             <thead>
                             <tr>
                                 <th>Naam</th>
                                 <th>Lengte in jaren</th>
                                 <th>Groep Prefix</th>
+                                <th>Verwijderen</th>
                                 <th>Bewerken</th>
                             </tr>
                             </thead>

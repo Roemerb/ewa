@@ -93,7 +93,7 @@ planning ={};
                     </FormControl>
                 </FormGroup>
 
-                <Button bsStyle="success" onClick={this.saveStuddyPlanning}>Update StudyPlanning</Button>
+                <Button bsStyle="success" onClick={this.saveStuddyPlanning}>Opslaan</Button>
 
             </form>
             </div>

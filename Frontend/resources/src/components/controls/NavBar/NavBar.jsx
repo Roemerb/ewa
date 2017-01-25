@@ -38,7 +38,13 @@ export default class NavBar extends React.Component {
                             </li>
                             <li>
                                 <a href="/progress">
-                                    Progress
+                                    Voortgang
+                                    <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-dashboard"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/studyplanning">
+                                    Studieplan
                                     <span className="pull-right hidden-xs showopacity glyph-nav glyphicons-dashboard"></span>
                                 </a>
                             </li>

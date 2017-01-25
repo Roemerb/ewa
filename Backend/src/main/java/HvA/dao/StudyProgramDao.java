@@ -36,4 +36,11 @@ public class StudyProgramDao
 
         return study_program;
     }
+
+    @Transactional
+    public int deleteStudyProgram(int id)
+    {
+        System.out.println("The ID is " + id);
+        return em.createQuery("DELETE Study_Program sg WHERE id = :id").setParameter("id", id).executeUpdate();
+    }
 }

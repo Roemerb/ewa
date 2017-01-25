@@ -101,11 +101,17 @@ public class StudyProgramController
         return study_program.getCourses();
     }
 
-    @RequestMapping(value = "/studyprogram/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/studyprogram", method = RequestMethod.POST)
     public ResponseEntity<Study_Program> createStudyProgram(@RequestBody Study_Program study_program)
     {
         dao.createStudyProgram(study_program);
 
         return new ResponseEntity<Study_Program>(study_program, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/studyprogram/{id}/delete", method = RequestMethod.DELETE)
+    public boolean deleteStudyProgram(@PathVariable("id") int id)
+    {
+        return (dao.deleteStudyProgram(id) == 1);
     }
 }
