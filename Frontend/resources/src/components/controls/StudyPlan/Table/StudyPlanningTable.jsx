@@ -17,50 +17,20 @@ planning ={};
         console.log(this.props);
     }
 
+    /**
+     * Parse and structure all the data fetched from the api.
+     */
     parsePlanning() {
+
+        this.planning.semester4 == this.props.semester4;
+        this.planning.semester5 == this.props.semester5;
+        this.planning.minor == this.props.minor;
 
         if (this.props.accepted == "true")
         {
             this.planning.accepted = "Ja";
         } else {
             this.planning.accepted = "Nee";
-        }
-
-        switch(this.props.choice_1)
-        {
-            case "theme":
-                this.planning.choice_1 = "ThemaSemester";
-                break;
-            case "internship":
-            default:
-                this.planning.choice_1 = "Stage";
-                break;
-            case "minor":
-                this.planning.choice_1 = "Minor";
-        }
-        switch(this.props.choice_2)
-        {
-            case "theme":
-            default:
-                this.planning.choice_2 = "ThemaSemester";
-                break;
-            case "internship":
-                this.planning.choice_2 = "Stage";
-                break;
-            case "minor":
-                this.planning.choice_2 = "Minor";
-        }
-        switch(this.props.choice_3)
-        {
-            case "theme":
-                this.planning.choice_3 = "ThemaSemester";
-                break;
-            case "internship":
-                this.planning.choice_3 = "Stage";
-                break;
-            case "minor":
-            default:
-                this.planning.choice_3 = "Gekozen minor";
         }
     }
 
@@ -86,7 +56,8 @@ planning ={};
                     </FormControl>
                     <ControlLabel>Semester 4</ControlLabel>
                     <FormControl componentClass="select" placeholder="select">
-                        <option value="select">{this.planning.choice_1}</option>
+                        <option value="select">{this.planning.semester4}</option>
+                        <option value="Stage">Stage</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
                         <option value="ThemaSemester">Big Data</option>
                         <option value="ThemaSemester">Creative Startups</option>
@@ -96,7 +67,8 @@ planning ={};
                     </FormControl>
                     <ControlLabel>Semester 5</ControlLabel>
                     <FormControl componentClass="select" placeholder="select">
-                        <option value="select">{this.planning.choice_2}</option>
+                        <option value="select">{this.planning.semester5}</option>
+                        <option value="Stage">Stage</option>
                         <option value="ThemaSemester" disabled>ThemaSemesters :</option>
                         <option value="ThemaSemester">Big Data</option>
                         <option value="ThemaSemester">Creative Startups</option>
@@ -108,7 +80,7 @@ planning ={};
                         id="formControlsText"
                         type="text"
                         label="Semester 6"
-                        placeholder={this.planning.choice_3}
+                        placeholder={this.planning.minor}
                     />
                     <ControlLabel>Semester 7</ControlLabel>
                     <FormControl disabled componentClass="select" placeholder="select">

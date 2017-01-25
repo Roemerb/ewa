@@ -36,4 +36,10 @@ public class StudyPlanDao
 
         return studyplan;
     }
+
+    @Transactional
+    public int deleteStudyPlan(int id)
+    {
+        return em.createQuery("DELETE Study_Plan sp WHERE user_id= :id").setParameter("id", id).executeUpdate();
+    }
 }

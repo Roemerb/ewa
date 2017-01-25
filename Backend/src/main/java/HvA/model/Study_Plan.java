@@ -18,14 +18,14 @@ public class Study_Plan
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "choice_1")
-    private String choice_1;
+    @Column(name = "semester4")
+    private String semester4;
 
-    @Column(name = "choice_2")
-    private String choice_2;
+    @Column(name = "semester5")
+    private String semester5;
 
-    @Column(name = "choice_3")
-    private String choice_3;
+    @Column(name = "minor")
+    private String minor;
 
     @Column(name = "accepted")
     private boolean accepted;
@@ -37,13 +37,13 @@ public class Study_Plan
 
 
 
-    public Study_Plan(int id, User user_id, String choice_1, String choice_2, String choice_3)
+    public Study_Plan(int id, User user_id, String semester4, String semester5, String minor)
     {
         setId(id);
         setUser(user_id);
-        setChoice_1(choice_1);
-        setChoice_2(choice_2);
-        setChoice_3(choice_3);
+        setChoice_1(semester4);
+        setChoice_2(semester5);
+        setChoice_3(minor);
     }
 
     public Study_Plan()
@@ -58,28 +58,24 @@ public class Study_Plan
         this.id = id;
     }
 
-    public String getChoice_1() {
-        return choice_1;
+    public String getSemester4() { return semester4;}
+
+    public void setChoice_1(String semester4) {this.semester4 = semester4; }
+
+    public String getSemester5() {
+        return semester5;
     }
 
-    public void setChoice_1(String choice_1) {
-        this.choice_1 = choice_1;
+    public void setChoice_2(String semester5) {
+        this.semester5 = semester5;
     }
 
-    public String getChoice_2() {
-        return choice_2;
+    public String getMinor() {
+        return minor;
     }
 
-    public void setChoice_2(String choice_2) {
-        this.choice_2 = choice_2;
-    }
-
-    public String getChoice_3() {
-        return choice_3;
-    }
-
-    public void setChoice_3(String choice_3) {
-        this.choice_3 = choice_3;
+    public void setChoice_3(String minor) {
+        this.minor = minor;
     }
 
     public boolean isAccepted() {

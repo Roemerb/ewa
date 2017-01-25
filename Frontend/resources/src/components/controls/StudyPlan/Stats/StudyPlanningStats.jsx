@@ -12,7 +12,9 @@ export default React.createClass ({
             study_plan: [],
         }
     },
-
+    /**
+     * Fetch data from the api with the url.
+     */
     componentDidMount() {
                 fetch('http://localhost:8080/user/1/planning').then((planningResponse) => {
                     console.log(planningResponse);
@@ -27,7 +29,9 @@ export default React.createClass ({
 
 
     render() {
-        console.log(this.study_plan)
+        /**
+         * Check if the data is loaded. Used for async.
+         */
         if (this.state.planningLoaded == true) {
             return (
                 <div>

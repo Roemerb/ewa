@@ -47,4 +47,10 @@ public class StudyPlanController
 
         return new ResponseEntity<Study_Plan>(studyplan, HttpStatus.OK);
     }
+
+    @RequestMapping(value ="/studyplan/{id}/delete", method = RequestMethod.DELETE)
+    public boolean deleteStudyPlan(@PathVariable("id") int id)
+    {
+        return(dao.deleteStudyPlan(id) == 1);
+    }
 }
