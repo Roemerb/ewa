@@ -27,7 +27,7 @@ export default class StudentTable extends React.Component {
                     <td>{userObj.hvaId}</td>
                     <td>
                         <FormGroup controlId={'user' + userObj.id}>
-                            <FormControl id={'userGrade_' + userObj.id} type="text" />
+                            <FormControl id={'userGrade_' + userObj.id} type="number" step="0.1" min="0.1" />
                         </FormGroup>
                     </td>
                 </tr>
@@ -53,12 +53,34 @@ export default class StudentTable extends React.Component {
         var grades = [];
 
         this.props.users.map((user) => {
-            var grade = {};
             grades[user.id] = $('#userGrade_' + user.id).val();
         });
 
-        grades.map(grade)
+        for(var userId in grades) {
+            var grade = grades[userId];
+
+            var floatGrade = parseFloat(grade);
+
+            var passed = (floatGrade >= 5.5) ? 1 : 0;
+
+            fetch('http://localhost:8080/grade/create?user_id=' + userId + '&exam_id=' + this.props.exam.id, {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify({
+                    "grade": floatGrade.toString(),
+                    "passed": passed,
+                    "gradeType": "REGULAR"
+                })
+            }).then((response) => {
+                response.json().then((data) => {
+                    console.log('The new grade: ', data);
+                })
+            })
+        }
     }
+
 
     render() {
         return (
