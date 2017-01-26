@@ -112,7 +112,7 @@ export default React.createClass ({
                         <h3>Voeg nieuw vak toe</h3>
 
                         <ControlLabel>Naam</ControlLabel>
-                        <FormControl id="name" type="text" />
+                        <FormControl id="courseName" type="text" />
 
                         <ControlLabel>Type</ControlLabel>
                         <FormControl componentClass="select" placeholder="select" id="type">
@@ -125,7 +125,7 @@ export default React.createClass ({
                             <FormControl id="ects" type="number" step="1" min="1" />
                         </FormGroup>
 
-                        <ControlLabel>Aantal ECTS</ControlLabel>
+                        <ControlLabel>Semester</ControlLabel>
                         <FormGroup>
                             <FormControl id="semester" type="number" step="1" min="1" max={this.state.program.durationYears * 2} />
                         </FormGroup>
@@ -153,7 +153,7 @@ export default React.createClass ({
     },
 
     saveCourse() {
-        var name = $('#name').val();
+        var name = $('#courseName').val();
         var semester = $('#semester').val();
         var type = $('#type').val();
         var ects = $('#ects').val();
@@ -175,7 +175,7 @@ export default React.createClass ({
     },
 
     saveProgram() {
-        var name = $('#name').val();
+        var name = $('#programName').val();
         var groupPrefix = $('#groupPrefix').val();
         var durationYears = $('#durationYears').val();
 
@@ -265,7 +265,7 @@ export default React.createClass ({
                             <h3>Maak een nieuwe Studie aan</h3>
 
                             <ControlLabel>Naam</ControlLabel>
-                            <FormControl id="name" type="text" />
+                            <FormControl id="programName" type="text" />
 
                             <ControlLabel>Lengte in jaren</ControlLabel>
                             <FormGroup>

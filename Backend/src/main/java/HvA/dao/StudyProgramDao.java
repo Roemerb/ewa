@@ -40,7 +40,6 @@ public class StudyProgramDao
     @Transactional
     public int deleteStudyProgram(int id)
     {
-        System.out.println("The ID is " + id);
         return em.createQuery("DELETE Study_Program sg WHERE id = :id").setParameter("id", id).executeUpdate();
     }
 }

@@ -17,7 +17,6 @@ export default React.createClass ({
             examResp.json().then((examData) => {
                 this.exams = examData;
                 fetch('http://localhost:8080/user/1/grades').then((gradeResponse) => {
-                    console.log(gradeResponse);
                     gradeResponse.json().then((gradeData) => {
                         this.grades = gradeData;
 
